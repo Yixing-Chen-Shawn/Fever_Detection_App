@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/orange"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="30dp"
+            android:text="Symptoms Log"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="40dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/orange"
+            app:theme="@style/ToolbarTheme" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/delete_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/topbar"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/searchCardDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:visibility="gone"
+            app:cardCornerRadius="6dp"
+            app:strokeColor="@color/cardCornerGrey"
+            app:strokeWidth="1dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchDeletion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/search_icon"
+                android:drawablePadding="5dp"
+                android:hint="Enter a specific date to delete"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:drawableStart="@drawable/search_icon" />
+            <Button
+                android:id="@+id/button_Confirm"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape"
+                android:text="Confirm"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginLeft="300dp"
+                android:layout_gravity="center_vertical"
+                />
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/descriptionOne"
+        android:layout_width="373dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete_bar" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="416dp"
+        android:layout_height="606dp"
+        android:layout_marginTop="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionOne">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_Descriptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+    <!-- <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/globalDataRecyclerView"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/RecyclerLoadingLayout"
+         android:layout_below="@id/descriptionOne"
+         android:layout_marginTop="5dp" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

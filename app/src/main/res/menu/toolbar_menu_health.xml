@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.CIS400.fever_detection_app.activity.HeartRateLogActivity">
+
+    <item
+        android:id="@+id/action_add"
+        android:orderInCategory="5"
+        android:title="@string/action_addH"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="10"
+        android:title="@string/action_deleteH"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_clear"
+        android:orderInCategory="15"
+        android:title="@string/action_clearH"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="20"
+        android:title="Exit From Log"
+        app:showAsAction="never"/>
+
+</menu>

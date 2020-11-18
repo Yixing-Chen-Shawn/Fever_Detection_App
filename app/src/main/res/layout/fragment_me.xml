@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_content2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    android:orientation="vertical">
+
+    <!--Top Header Layout-->
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_back_24dp" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/me_alert"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_notifications_white_24dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:padding="4dp"
+                android:src="@drawable/circleyellowfil" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!--Top Profile Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circularbordersolid"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayout_Heart_Rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/preference_first_item"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+
+                    <TextView
+                        android:id="@+id/text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:padding="8dp"
+                        android:text="My Health Log"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/mm_submenu" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayout_Symptoms"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/preference_last_item"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:padding="8dp"
+                        android:text="My Symptoms Log"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/mm_submenu" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayout_Change_Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/preference_first_item"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+
+                    <TextView
+                        android:id="@+id/text3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:padding="10dp"
+                        android:text="Change Password"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/mm_submenu" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayout_Change_PhoneNum"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/preference_last_item"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/text4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:padding="8dp"
+                        android:text="Change Phone Number"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/mm_submenu" />
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/Button_Logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/shape"
+                    android:text="Log out"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

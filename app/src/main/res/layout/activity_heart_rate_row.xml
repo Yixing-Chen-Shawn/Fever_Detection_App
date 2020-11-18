@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/healthCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/orange"
+        android:backgroundTint="@color/orange"
+        app:cardCornerRadius="6dp"
+        app:strokeColor="#000"
+        app:strokeWidth="1dp">
+
+        <RelativeLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:paddingBottom="10dp"
+            android:visibility="visible"
+            android:id="@+id/healthCard_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/firstLine"
+        android:layout_width="300dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:text="Date: "
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/secondLine"
+        android:layout_width="300dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/firstLine"
+        android:text="Heart Rate: "
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/thirdLine"
+        android:layout_width="300dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/secondLine"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="Contacts"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/fourthLine"
+        android:layout_width="300dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/thirdLine"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="Body Temp: "
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/fifthLine"
+        android:layout_width="300dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/fourthLine"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="Blood Pressure: "
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="13dp" />
+
+        </RelativeLayout>
+        </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

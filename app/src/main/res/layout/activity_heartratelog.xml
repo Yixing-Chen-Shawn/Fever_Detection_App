@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.HeartRateLogActivity">
+
+    <LinearLayout
+        android:id="@+id/topbar_HR"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/orange"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="30dp"
+            android:text="Health Log"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_HR"
+            android:layout_width="40dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/orange"
+            app:theme="@style/ToolbarTheme" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/delete_barHR"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/topbar_HR"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/searchCardDeleteHR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:visibility="gone"
+            app:cardCornerRadius="6dp"
+            app:strokeColor="@color/cardCornerGrey"
+            app:strokeWidth="1dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchDeletionHR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/search_icon"
+                android:drawablePadding="5dp"
+                android:hint="Enter a specific date to delete"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:drawableStart="@drawable/search_icon" />
+            <Button
+                android:id="@+id/button_ConfirmHR"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape"
+                android:text="Confirm"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginLeft="300dp"
+                android:layout_gravity="center_vertical"
+                />
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description_HeartRate"
+        android:layout_width="373dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete_barHR" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_hr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="160dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="@id/description_HeartRate"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addRecord_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/orange"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add"
+        android:layout_marginRight="16dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
