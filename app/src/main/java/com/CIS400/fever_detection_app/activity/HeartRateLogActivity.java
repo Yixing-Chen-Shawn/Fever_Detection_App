@@ -3,6 +3,7 @@ package com.CIS400.fever_detection_app.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +27,12 @@ import com.CIS400.fever_detection_app.data.MyUser;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,6 +53,8 @@ public class HeartRateLogActivity extends BaseActivity {
     private Button confirm;
     private TextView HealthList;
     private int size;
+    private ImageView back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,20 +64,16 @@ public class HeartRateLogActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_HR);
         setSupportActionBar(toolbar);
 
+        back = (ImageView) findViewById(R.id.back_health);
         searchEditText = findViewById(R.id.searchDeletionHR);
         searchCard = findViewById(R.id.searchCardDeleteHR);
         searchCard.setVisibility(View.GONE);
         confirm = (Button) findViewById(R.id.button_ConfirmHR);
-        HeartRateDates = user.getHrdates();
+        HeartRateDates = user.getHrdates() != null ?  user.getHrdates() : new ArrayList<>();
         HearRate = user.getHeartRate();
         Contacts = user.getContacts();
         BodyTemp = user.getBodyTemp();
         Blood = user.getBlood();
-        Collections.reverse(HeartRateDates);
-        Collections.reverse(HearRate);
-        Collections.reverse(Contacts);
-        Collections.reverse(BodyTemp);
-        Collections.reverse(Blood);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_hr);
         HealthList = (TextView) findViewById(R.id.description_HeartRate);
         recyclerView.setHasFixedSize(true);
@@ -81,9 +85,26 @@ public class HeartRateLogActivity extends BaseActivity {
             input.add(List.of(HeartRateDates.get(i), HearRate.get(i), Contacts.get(i), BodyTemp.get(i), Blood.get(i)));
         }
         HealthList.setText("You have health record for the past " + size + " day(s)");
-        HealthList.setTextColor(Color.parseColor("#d44500"));
+        HealthList.setTextColor(Color.parseColor("#000000"));
         mAdapter = new HrRecyclerViewAdapter(input);
         recyclerView.setAdapter(mAdapter);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -169,6 +190,8 @@ public class HeartRateLogActivity extends BaseActivity {
             });
         }
     }
+
+
 
 
     //USED TO UPDATE SYMPTOMS AFTER DELETING

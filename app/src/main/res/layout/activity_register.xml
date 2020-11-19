@@ -23,7 +23,7 @@
             android:textStyle="bold"
             android:textSize="25sp"
             android:textColor="#ffffff"
-            android:background="#d44500"
+            android:background="@color/black"
             android:gravity="center"
             />
         <!--

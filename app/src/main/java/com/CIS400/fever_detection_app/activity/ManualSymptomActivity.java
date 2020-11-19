@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -38,9 +39,13 @@ public class ManualSymptomActivity extends BaseActivity{
 
 
     private RadioButton radioButton;
-    private Button backButton;
+    private Button saveButton, backButton;
+    private RadioGroup radioGroup;
+    private MyUser user;
     Symptoms symptoms = new Symptoms();
     private Fragment mFrag1;
+    private EditText dateInput, descriptionInput;
+    private ImageView back;
 
 
     @Override
@@ -49,11 +54,12 @@ public class ManualSymptomActivity extends BaseActivity{
         setContentView(R.layout.activity_manual_symptoms);
         Bmob.initialize(this, "2de9dc3c787359faf54d36e92a2bbfb0");
 
-        Button saveButton = (Button) findViewById(R.id.saveButton);
+        saveButton = (Button) findViewById(R.id.saveButton);
         backButton = (Button) findViewById(R.id.BackButton);
+        back = (ImageView) findViewById(R.id.back_manualSymptom);
 
-        EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
-        EditText dateInput = (EditText)  findViewById(R.id.dateInput);
+        descriptionInput = (EditText) findViewById(R.id.descriptionInput);
+        dateInput = (EditText)  findViewById(R.id.dateInput);
 
         /*
         RadioButton one = (RadioButton) findViewById(R.id.One);
@@ -63,10 +69,10 @@ public class ManualSymptomActivity extends BaseActivity{
         RadioButton five = (RadioButton) findViewById(R.id.Five);
          */
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         //int selectedId = 0;
 
-        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        user = BmobUser.getCurrentUser(MyUser.class);
 
         //addListenerOnButton();
 
@@ -98,6 +104,11 @@ public class ManualSymptomActivity extends BaseActivity{
                 //Check if entries are empty
                 if (dateInput.getText().toString().trim().matches("") || descriptionInput.getText().toString().trim().matches("")) {
                     Toast.makeText(ManualSymptomActivity.this, "Error: Fill in all items", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!dateInput.getText().toString().trim().matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
+                    Toast.makeText(ManualSymptomActivity.this, "Date Format Error: Use format MM/DD/YEAR", Toast.LENGTH_LONG).show();
                     return;
                 }
                 //Add inputs
@@ -148,7 +159,22 @@ public class ManualSymptomActivity extends BaseActivity{
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
 
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 

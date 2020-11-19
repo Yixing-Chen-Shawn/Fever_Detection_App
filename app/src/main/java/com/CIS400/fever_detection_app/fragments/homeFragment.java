@@ -33,13 +33,15 @@ public class homeFragment extends Fragment {
 
     private ImageView alertIcon;
     private Button button, symptom_but, health_but;
+    private List<String> symptomRatings;
+    private MyUser user;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Bmob.initialize(getActivity(), "2de9dc3c787359faf54d36e92a2bbfb0");
-        MyUser user = BmobUser.getCurrentUser(MyUser.class);
+        user = BmobUser.getCurrentUser(MyUser.class);
         button = (Button) view.findViewById(R.id.button_Covid);
         symptom_but = (Button) view.findViewById(R.id.button_Symptom);
         health_but = (Button) view.findViewById(R.id.button_health);
@@ -49,12 +51,7 @@ public class homeFragment extends Fragment {
 
         //1. Initially set alertIcon to invisible
         alertIcon.setVisibility(View.INVISIBLE);
-
-        //2. Now check if rating is 1 or 2 to send notification and update alertIcon
-        List<String> symptomDescriptions = (user.getSymptoms() != null) ? user.getSymptoms() : new ArrayList<>();
-        List<String> symptomDates = (user.getSymptomDates() != null) ? user.getSymptomDates() : new ArrayList<>();
-        List<String> symptomRatings = (user.getSymptomRatings() != null) ? user.getSymptomRatings() : new ArrayList<>();
-
+        symptomRatings = user.getSymptomRatings();
         if (symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
             alertIcon.setVisibility(View.VISIBLE);
         }
@@ -99,8 +96,6 @@ public class homeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
 
         return view;
     }

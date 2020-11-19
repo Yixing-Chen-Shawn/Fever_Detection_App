@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     tools:context=".activity.LoginActivity">
 
     <TextView
@@ -17,7 +18,7 @@
         android:textStyle="bold"
         android:textSize="24sp"
         android:textColor="#ffffff"
-        android:background="#d44500"
+        android:background="@color/black"
         />
 
     <ImageView

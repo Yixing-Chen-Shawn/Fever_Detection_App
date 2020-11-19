@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="@color/orange"
+        android:background="@color/black"
         android:gravity="center_vertical"
-        android:padding="16dp">
+        android:padding="5dp">
 
         <Space
             android:layout_width="wrap_content"
@@ -48,19 +47,26 @@
                 android:src="@drawable/ic_notifications_white_24dp" />
 
             <ImageView
+                android:id="@+id/healthCenter_alert_icon"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
                 android:padding="4dp"
                 android:src="@drawable/circleyellowfil" />
         </RelativeLayout>
     </LinearLayout>
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:paddingTop="30sp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
@@ -76,17 +82,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter your Age:"
+            android:text="Enter your Age: "
+            android:textColor="@color/black"
+            android:textStyle="italic"
             android:textSize="22sp" />
 
         <EditText
             android:id="@+id/enter_age"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:hint="age"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/shape"
             android:inputType="number"
             android:padding="16dp"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

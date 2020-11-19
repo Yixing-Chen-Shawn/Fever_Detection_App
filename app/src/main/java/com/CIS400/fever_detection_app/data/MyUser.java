@@ -1,6 +1,7 @@
 package com.CIS400.fever_detection_app.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -16,9 +17,9 @@ public class MyUser extends BmobUser {
 
     private String notificationHadViewed;
 
-    private List<String> descriptions = new ArrayList<String>();
-    private List<String> dates = new ArrayList<String>();
-    private List<String> ratings = new ArrayList<String>();
+    private List<String> descriptions = new ArrayList<>();
+    private List<String> dates = new ArrayList<>();
+    private List<String> ratings = new ArrayList<>();
     private List<String> heartRate = new ArrayList<>();
     private List<String> contacts = new ArrayList<>();
     private List<String> hrdates = new ArrayList<>();
@@ -37,6 +38,7 @@ public class MyUser extends BmobUser {
     //Getter and Setters for symptom descriptions
     public void addSymptom (String description) {
         this.descriptions.add(description);
+        Collections.reverse(this.descriptions);
     }
     public List<String> getSymptoms() {
         return descriptions;
@@ -48,6 +50,7 @@ public class MyUser extends BmobUser {
     }
     public void setHeartRate(String heartrate){
         this.heartRate.add(heartrate);
+        Collections.reverse(this.heartRate);
     }
 
     public List<String> getContacts(){
@@ -56,6 +59,7 @@ public class MyUser extends BmobUser {
 
     public void setContacts(String contacts){
         this.contacts.add(contacts);
+        Collections.reverse(this.contacts);
     }
 
     public List<String> getBodyTemp(){
@@ -64,14 +68,16 @@ public class MyUser extends BmobUser {
 
     public void setBodyTemp(String bodyTemp){
         this.bodyTemp.add(bodyTemp);
+        Collections.reverse(this.bodyTemp);
     }
 
     public List<String> getBlood(){
-        return blood;
+        return this.blood;
     }
 
     public void setBlood(String blood){
         this.blood.add(blood);
+        Collections.reverse(this.blood);
     }
 
     //Miscellaneous symptom functions
@@ -141,6 +147,7 @@ public class MyUser extends BmobUser {
     }
     public void addSymptomDate(String date) {
         this.dates.add(date);
+        Collections.reverse(this.dates);
     }
 
     //Getter and Setters for symptom ratings
@@ -149,6 +156,7 @@ public class MyUser extends BmobUser {
     }
     public void addSymptomRating(String rating) {
         this.ratings.add(rating);
+        Collections.reverse(this.ratings);
     }
 
 
@@ -158,6 +166,7 @@ public class MyUser extends BmobUser {
 
     public void setHrdates(String date){
         this.hrdates.add(date);
+        Collections.reverse(this.hrdates);
     }
 
     public String getGender(){

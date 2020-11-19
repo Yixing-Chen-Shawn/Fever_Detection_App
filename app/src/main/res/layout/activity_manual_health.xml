@@ -12,12 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="@color/orange"
+        android:background="@color/black"
         android:gravity="center_vertical"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_manualHealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_back_24dp" />
 
         <Space
             android:layout_width="wrap_content"
@@ -68,7 +76,7 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Your heart Rate Per Minute (0 if not know)"
+        android:hint="Your heart Beats Per Minute (0 if not know)"
         android:textSize="13dp"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"

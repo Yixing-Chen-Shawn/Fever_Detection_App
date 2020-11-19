@@ -13,7 +13,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
+        android:background="@color/black"
         app:titleTextColor="@android:color/white" />
 
 </LinearLayout>

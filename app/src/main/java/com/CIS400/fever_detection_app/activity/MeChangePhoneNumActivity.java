@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class MeChangePhoneNumActivity extends BaseActivity {
 
     //private Text currentNumber;
     private Fragment mFrag1;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class MeChangePhoneNumActivity extends BaseActivity {
         Button updateButton = (Button) findViewById(R.id.update_Number);
         EditText updateNumberText = (EditText) findViewById(R.id.update_Number_Text);
         String new_number = updateNumberText.getText().toString().trim();
-
+        back = (ImageView) findViewById(R.id.back_phone);
         MyUser user = BmobUser.getCurrentUser(MyUser.class);
         String number = user.getPhoneNum();
 
@@ -91,5 +93,21 @@ public class MeChangePhoneNumActivity extends BaseActivity {
 
             }
         });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.HeartRateLogActivity">
@@ -11,17 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="@color/orange"
+        android:background="@color/black"
         android:gravity="center_vertical"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/back_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_back_24dp" />
+
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +52,7 @@
             android:id="@+id/toolbar_HR"
             android:layout_width="40dp"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/orange"
+            android:background="@color/black"
             app:theme="@style/ToolbarTheme" />
 
 
@@ -123,7 +133,7 @@
         android:layout_centerHorizontal="true"
         app:layout_constraintBottom_toBottomOf="@id/description_HeartRate"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+   <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addRecord_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -135,7 +145,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     android:id="@+id/home_layout"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@android:color/background_light"
+    android:background="@color/black"
     android:layout_gravity="bottom"
     android:orientation="horizontal">
 
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="Home"
         android:layout_gravity="center"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="16sp"/>
 
     </LinearLayout>
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Heart Rate"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contacts"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="16sp" />
     </LinearLayout>
 
@@ -108,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Me"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="16sp"/>
     </LinearLayout>
 

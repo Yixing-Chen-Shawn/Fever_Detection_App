@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -18,12 +19,21 @@ import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.LoginActivity;
 import com.CIS400.fever_detection_app.activity.MeChangePasswordActivity;
 import com.CIS400.fever_detection_app.activity.MeChangePhoneNumActivity;
+import com.CIS400.fever_detection_app.activity.NotificationsActivity;
 import com.CIS400.fever_detection_app.activity.SymptomsLogActivity;
+import com.CIS400.fever_detection_app.data.MyUser;
+
+import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class meFragment extends Fragment {
+    private ImageView alertIcon, meAlert;
+    private MyUser user;
+    private List<String> symptomRatings;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me, container, false);
@@ -34,6 +44,30 @@ public class meFragment extends Fragment {
         RelativeLayout change_phoneNum = (RelativeLayout) view.findViewById(R.id.RelativeLayout_Change_PhoneNum);
         RelativeLayout symptoms = (RelativeLayout) view.findViewById(R.id.RelativeLayout_Symptoms);
         Button logout  = (Button) view.findViewById(R.id.Button_Logout);
+        user = BmobUser.getCurrentUser(MyUser.class);
+        alertIcon = (ImageView) view.findViewById(R.id.me_alert_icon);
+        meAlert = (ImageView) view.findViewById(R.id.me_alert);
+        alertIcon.setVisibility(View.INVISIBLE);
+        symptomRatings = user.getSymptomRatings();
+        if (symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
+            alertIcon.setVisibility(View.VISIBLE);
+        }
+
+        meAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user.setNotificationViewed("True");
+                user.update(new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+
+                    }
+                });
+                Intent intent = new Intent(getActivity(), NotificationsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         heart_rate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

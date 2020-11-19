@@ -14,12 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 
 import com.CIS400.fever_detection_app.R;
 import com.CIS400.fever_detection_app.data.MyUser;
@@ -45,6 +47,7 @@ public class SymptomsLogActivity extends BaseActivity {
     private MaterialCardView searchCard;
     private String searchText = "";
     private Button confirm;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class SymptomsLogActivity extends BaseActivity {
         searchCard = findViewById(R.id.searchCardDelete);
         searchCard.setVisibility(View.GONE);
         user = BmobUser.getCurrentUser(MyUser.class);
+        back = (ImageView) findViewById(R.id.back_Symptom);
 
         TextView symptomsList = (TextView) findViewById(R.id.descriptionOne);
         @SuppressLint("WrongViewCast") LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.LinearLayout_Descriptions);
@@ -73,10 +77,6 @@ public class SymptomsLogActivity extends BaseActivity {
         symptomRatings = user.getSymptomRatings();
 
         int size = symptomDescriptions.size();
-        //Reverse Arrays
-        Collections.reverse(symptomDates);
-        Collections.reverse(symptomDescriptions);
-        Collections.reverse(symptomRatings);
 
         //Second: For loop to display the data
 
@@ -89,10 +89,12 @@ public class SymptomsLogActivity extends BaseActivity {
             temp2 = new TextView(this);
 
             temp.setTextSize(18);
+            temp.setTextColor(Color.parseColor("#000000"));;
             temp.setTypeface(null, Typeface.BOLD);
             temp.setGravity(Gravity.CENTER);
 
             temp2.setTextSize(14);
+            temp2.setTextColor(Color.parseColor("#000000"));;
             temp2.setGravity(Gravity.CENTER);
 
             temp.setText("\n" + symptomDates.get(i) + " - " + symptomRatings.get(i) + "\n");
@@ -103,7 +105,25 @@ public class SymptomsLogActivity extends BaseActivity {
         }
 
         symptomsList.setText("You have symptom logs for the past " + size + " day(s)");
-        symptomsList.setTextColor(Color.parseColor("#d44500"));;
+        symptomsList.setTextColor(Color.parseColor("#000000"));
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

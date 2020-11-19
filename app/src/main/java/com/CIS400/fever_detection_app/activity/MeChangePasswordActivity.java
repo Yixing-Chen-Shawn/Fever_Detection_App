@@ -1,12 +1,15 @@
 package com.CIS400.fever_detection_app.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.CIS400.fever_detection_app.R;
@@ -21,6 +24,7 @@ public class MeChangePasswordActivity extends BaseActivity {
 
     private EditText emailText;
     private Button resetButton;
+    private ImageView back;
 
 
     @Override
@@ -29,11 +33,10 @@ public class MeChangePasswordActivity extends BaseActivity {
         setContentView(R.layout.activity_me_change_password);
         Bmob.initialize(this, "2de9dc3c787359faf54d36e92a2bbfb0");
 
-
         emailText = (EditText) findViewById(R.id.input_Reset_Email);
         resetButton = (Button) findViewById(R.id.reset_Password_Button);
-
-        resetButton.setOnClickListener(new View.OnClickListener(){
+        back = (ImageView) findViewById(R.id.back_pwd);
+        resetButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
 
@@ -41,22 +44,35 @@ public class MeChangePasswordActivity extends BaseActivity {
 
                     @Override
                     public void done(BmobException e) {
-                        if(e==null){
+                        if (e == null) {
                             Toast.makeText(MeChangePasswordActivity.this, "Reset Password Sent To Email.", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(MeChangePasswordActivity.this, MainActivity.class));
-                        }else{
+                        } else {
                             Toast.makeText(MeChangePasswordActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                 });
-
-
-
             }
 
         });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
-
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
+

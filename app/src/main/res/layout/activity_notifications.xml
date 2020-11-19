@@ -11,12 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="@color/orange"
-        android:gravity="center_vertical"
+        android:background="@color/black"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_back_24dp" />
 
         <Space
             android:layout_width="wrap_content"
@@ -26,12 +36,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="30dp"
+            android:gravity="center_horizontal"
             android:text="Notifications"
+            android:layout_weight="2"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
 
         <Space
             android:layout_width="wrap_content"

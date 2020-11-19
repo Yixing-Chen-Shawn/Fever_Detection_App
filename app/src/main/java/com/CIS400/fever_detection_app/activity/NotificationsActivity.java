@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.CIS400.fever_detection_app.R;
 import com.CIS400.fever_detection_app.data.MyUser;
 
@@ -18,7 +20,9 @@ import cn.bmob.v3.BmobUser;
 
 public class NotificationsActivity extends BaseActivity{
 
-    MyUser user = BmobUser.getCurrentUser(MyUser.class);
+    private MyUser user;
+    private ImageView back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +35,10 @@ public class NotificationsActivity extends BaseActivity{
         Button suHealthAndWellnessButton = (Button) findViewById(R.id.suHealthAndWellness);
         Button suHealthCare = (Button) findViewById(R.id.suHealthCare);
         Button suPharmacy = (Button) findViewById(R.id.suPharmacy);
+        user = BmobUser.getCurrentUser(MyUser.class);
+        back = (ImageView) findViewById(R.id.back_notification);
 
-        List<String> symptomDates = (user.getSymptomDates() != null) ? user.getSymptomDates() : new ArrayList<>();
-        List<String> symptomRatings = (user.getSymptomRatings() != null) ? user.getSymptomRatings() : new ArrayList<>();
+        List<String> symptomRatings = user.getSymptomRatings();
 
         //Check if any ratings were a two or a one
         if (symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
@@ -52,9 +57,6 @@ public class NotificationsActivity extends BaseActivity{
             suHealthAndWellnessButton.setVisibility(View.INVISIBLE);
             suHealthCare.setVisibility(View.INVISIBLE);
             suPharmacy.setVisibility(View.INVISIBLE);
-
-
-
         }
 
         suHealthAndWellnessButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +81,22 @@ public class NotificationsActivity extends BaseActivity{
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
 
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }
