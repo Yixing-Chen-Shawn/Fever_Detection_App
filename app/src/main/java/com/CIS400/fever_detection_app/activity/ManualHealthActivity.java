@@ -69,21 +69,21 @@ public class ManualHealthActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(Integer.parseInt(sheartrate) < 0){
+                if(Double.parseDouble(sheartrate) < 0){
                     sheartrate = "Unknown";
                 }
 
-                if(Integer.parseInt(scontacts) < 0){
+                if(Double.parseDouble(scontacts) < 0){
                     scontacts = "Unknown";
                 }
 
 
-                if(Integer.parseInt(sbodytemp) < 0){
+                if(Double.parseDouble(sbodytemp) < 0){
                     sbodytemp = "Unknown";
                 }
 
 
-                if(Integer.parseInt(sblood) < 0){
+                if(Double.parseDouble(sblood) < 0){
                     sblood = "Unknown";
                 }
 

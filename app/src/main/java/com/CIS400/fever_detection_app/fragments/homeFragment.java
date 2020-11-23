@@ -1,6 +1,7 @@
 package com.CIS400.fever_detection_app.fragments;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import cn.bmob.v3.listener.UpdateListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.CIS400.fever_detection_app.R;
@@ -36,10 +38,11 @@ public class homeFragment extends Fragment {
 
     private ImageView alertIcon, homeAlert;
     private Button button, symptom_but, health_but;
-    private List<String> symptomRatings;
+    private List<String> bodytemp, heartrate, blood, symptomRatings;
     private MyUser user;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -59,8 +62,11 @@ public class homeFragment extends Fragment {
         //1. Initially set alertIcon to invisible
         alertIcon.setVisibility(View.INVISIBLE);
         homeAlert.setVisibility(View.VISIBLE);
+        bodytemp = user.getBodyTemp();
+        heartrate = user.getHeartRate();
+        blood = user.getBlood();
         symptomRatings = user.getSymptomRatings();
-        if (symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
+        if (bodytemp.stream().anyMatch(i-> (!i.equals("Unknown") && (Double.parseDouble(i) < 36.5 || Double.parseDouble(i) > 37)))|| heartrate.stream().anyMatch(a -> (!a.equals("Unknown") && (Double.parseDouble(a) < 60 || Double.parseDouble(a) > 100)))|| blood.stream().anyMatch(b -> !b.equals("Unknown") && (Double.parseDouble(b) < 80 || Double.parseDouble(b) > 120)) || symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
             alertIcon.setVisibility(View.VISIBLE);
         }else{
             if(alertIcon.getVisibility() == View.VISIBLE){
