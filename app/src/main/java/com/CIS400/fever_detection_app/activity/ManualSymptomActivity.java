@@ -42,7 +42,7 @@ public class ManualSymptomActivity extends BaseActivity{
     private Button saveButton, backButton;
     private RadioGroup radioGroup;
     private MyUser user;
-    Symptoms symptoms = new Symptoms();
+    private List datel, descriptonl, ratingl;
     private Fragment mFrag1;
     private EditText dateInput, descriptionInput;
     private ImageView back;
@@ -88,16 +88,19 @@ public class ManualSymptomActivity extends BaseActivity{
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //Get radio button info
                 //radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
                 int selectedId = radioGroup.getCheckedRadioButtonId();
+                String dateInputs = dateInput.getText().toString().trim();
+                String descriptionInputs = descriptionInput.getText().toString().trim();
+                String ratings = radioButton.getText().toString();
+                datel = user.getSymptomDates();
+                descriptonl = user.getSymptoms();
+                ratingl = user.getSymptomRatings();
 
                 if (selectedId == -1) {
                     Toast.makeText(ManualSymptomActivity.this, "Error: Fill in all items", Toast.LENGTH_LONG).show();
                     return;
-                } else {
-                    user.addSymptomRating(radioButton.getText().toString());
                 }
 
 
@@ -111,9 +114,32 @@ public class ManualSymptomActivity extends BaseActivity{
                     Toast.makeText(ManualSymptomActivity.this, "Date Format Error: Use format MM/DD/YEAR", Toast.LENGTH_LONG).show();
                     return;
                 }
+
+                if(datel.contains(dateInputs)){
+                    int idx = datel.indexOf(dateInputs);
+                    datel.set(idx, dateInputs);
+                    descriptonl.set(idx, descriptionInputs);
+                    ratingl.set(idx, ratings);
+                    displayToast("Record on " + dateInputs + " has been overwritten.");
+                    user.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if(e == null){
+                                Toast.makeText(ManualSymptomActivity.this, "Successful!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(ManualSymptomActivity.this, SymptomsLogActivity.class));
+
+                            }else{
+                                Toast.makeText(ManualSymptomActivity.this, "User Update failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                    return;
+                }
+
                 //Add inputs
                 user.addSymptom(descriptionInput.getText().toString().trim());
                 user.addSymptomDate(dateInput.getText().toString().trim());
+                user.addSymptomRating(radioButton.getText().toString());
 
                 /*Check if radio input is 1 or 2. If so, make notificationViewed from MyUser = false so it displays alertIcon.
                 if (radioButton.getText().toString() == "2 (Not Good)" || radioButton.getText().toString() == "1 (Feeling Terrible)") {
@@ -151,6 +177,7 @@ public class ManualSymptomActivity extends BaseActivity{
             }
         });
 
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,6 +204,9 @@ public class ManualSymptomActivity extends BaseActivity{
         }
     }
 
-
+    public void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message,
+                Toast.LENGTH_SHORT).show();
+    }
 
 }

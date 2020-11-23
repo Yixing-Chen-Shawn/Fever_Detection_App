@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="@color/black"
+        android:background="@color/orange"
         android:gravity="center_vertical"
         android:padding="5dp">
 

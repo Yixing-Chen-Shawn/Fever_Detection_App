@@ -176,6 +176,11 @@ public class HeartRateLogActivity extends BaseActivity {
                     searchEditText.setVisibility(View.GONE);
                     confirm.setVisibility(View.GONE);
                     searchText = searchEditText.getText().toString().trim();
+                    if(searchText.length() == 0){
+                        startActivity(getIntent());
+                        finish();
+                        return;
+                    }
                     int ret = user.deleteHealthStats(searchText);
                     if(ret == -1) displayToast("You do not have record on that day.");
                     updateSymptoms();

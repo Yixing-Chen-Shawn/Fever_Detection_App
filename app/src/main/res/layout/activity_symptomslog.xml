@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="@color/black"
+        android:background="@color/orange"
         android:gravity="center_vertical"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,16 +49,15 @@
             android:id="@+id/toolbar"
             android:layout_width="40dp"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/black"
             app:theme="@style/ToolbarTheme" />
 
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/delete_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@+id/topbar"
         android:orientation="horizontal">
@@ -101,25 +100,47 @@
                 />
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/descriptionOne"
-        android:layout_width="373dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        android:textStyle="bold"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_bar">
 
-    <ScrollView
+        <TextView
+            android:id="@+id/description_Symptom"
+            android:layout_width="373dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_symptom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="150dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+   <!-- <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="416dp"
         android:layout_height="606dp"
@@ -137,7 +158,7 @@
 
         </LinearLayout>
     </ScrollView>
-    <!-- <androidx.recyclerview.widget.RecyclerView
+     <androidx.recyclerview.widget.RecyclerView
          android:id="@+id/globalDataRecyclerView"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"

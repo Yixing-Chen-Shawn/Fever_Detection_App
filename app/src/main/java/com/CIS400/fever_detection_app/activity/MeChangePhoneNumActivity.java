@@ -83,7 +83,8 @@ public class MeChangePhoneNumActivity extends BaseActivity {
                     public void done(BmobException e) {
                         if(e == null){
                             Toast.makeText(MeChangePhoneNumActivity.this, "Phone Number Update Successful!", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(MeChangePhoneNumActivity.this, MainActivity.class));
+                            startActivity(getIntent());
+                            finish();
                         }else{
                             Toast.makeText(MeChangePhoneNumActivity.this, "Update failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }

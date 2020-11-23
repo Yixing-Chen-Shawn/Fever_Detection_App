@@ -48,9 +48,14 @@ public class meFragment extends Fragment {
         alertIcon = (ImageView) view.findViewById(R.id.me_alert_icon);
         meAlert = (ImageView) view.findViewById(R.id.me_alert);
         alertIcon.setVisibility(View.INVISIBLE);
+        meAlert.setVisibility(View.VISIBLE);
         symptomRatings = user.getSymptomRatings();
         if (symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
             alertIcon.setVisibility(View.VISIBLE);
+        }else{
+            if(alertIcon.getVisibility() == View.VISIBLE){
+                alertIcon.setVisibility(View.INVISIBLE);
+            }
         }
 
         meAlert.setOnClickListener(new View.OnClickListener() {

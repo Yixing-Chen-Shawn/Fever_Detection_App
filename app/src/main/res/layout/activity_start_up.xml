@@ -24,7 +24,7 @@
         android:paddingTop="10dp"
         android:paddingLeft="20dp"
         android:text="SU Health Prevention System"
-        android:background="@color/black"
+        android:background="@color/orange"
         android:textColor="#ffffff"
         android:textSize="28dp" />
 

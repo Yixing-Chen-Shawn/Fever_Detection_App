@@ -69,21 +69,21 @@ public class ManualHealthActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(Integer.parseInt(sheartrate) == 0){
+                if(Integer.parseInt(sheartrate) < 0){
                     sheartrate = "Unknown";
                 }
 
-                if(Integer.parseInt(scontacts) == 0){
+                if(Integer.parseInt(scontacts) < 0){
                     scontacts = "Unknown";
                 }
 
 
-                if(Integer.parseInt(sbodytemp) == 0){
+                if(Integer.parseInt(sbodytemp) < 0){
                     sbodytemp = "Unknown";
                 }
 
 
-                if(Integer.parseInt(sblood) == 0){
+                if(Integer.parseInt(sblood) < 0){
                     sblood = "Unknown";
                 }
 
@@ -93,6 +93,7 @@ public class ManualHealthActivity extends AppCompatActivity {
                     contactl.set(idx, scontacts);
                     bodytempl.set(idx, sbodytemp);
                     bloodl.set(idx, sblood);
+                    displayToast("Record on " + sdate + " has been overwritten.");
                     user.update(new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
@@ -158,4 +159,10 @@ public class ManualHealthActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    public void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message,
+                Toast.LENGTH_SHORT).show();
+    }
+
 }

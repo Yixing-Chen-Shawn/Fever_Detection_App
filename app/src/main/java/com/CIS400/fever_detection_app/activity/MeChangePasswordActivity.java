@@ -46,7 +46,6 @@ public class MeChangePasswordActivity extends BaseActivity {
                     public void done(BmobException e) {
                         if (e == null) {
                             Toast.makeText(MeChangePasswordActivity.this, "Reset Password Sent To Email.", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(MeChangePasswordActivity.this, MainActivity.class));
                         } else {
                             Toast.makeText(MeChangePasswordActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }

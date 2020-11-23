@@ -22,12 +22,16 @@ import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.CIS400.fever_detection_app.R;
+import com.CIS400.fever_detection_app.adapters.SymptomRecyclerViewAdapter;
 import com.CIS400.fever_detection_app.data.MyUser;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,6 +50,11 @@ public class SymptomsLogActivity extends BaseActivity {
     private TextInputEditText searchEditText;
     private MaterialCardView searchCard;
     private String searchText = "";
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private TextView SymptomList;
+    private int size;
     private Button confirm;
     private ImageView back;
 
@@ -62,50 +71,24 @@ public class SymptomsLogActivity extends BaseActivity {
         searchCard.setVisibility(View.GONE);
         user = BmobUser.getCurrentUser(MyUser.class);
         back = (ImageView) findViewById(R.id.back_Symptom);
-
-        TextView symptomsList = (TextView) findViewById(R.id.descriptionOne);
-        @SuppressLint("WrongViewCast") LinearLayout myLinearLayout = (LinearLayout) findViewById(R.id.LinearLayout_Descriptions);
-        confirm = (Button) findViewById(R.id.button_Confirm);
-
-        //Used to *temporarily* clear symptoms list. May include a function to let user clear their log using this.
-        //user.clearSymptoms();
-        //updateSymptoms();
-
-        //First: Grab the list of symptoms as well as its size from database. Reverse the list as well to display correctly.
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_symptom);
+        SymptomList = (TextView) findViewById(R.id.description_Symptom);
         symptomDescriptions = user.getSymptoms();
         symptomDates = user.getSymptomDates();
         symptomRatings = user.getSymptomRatings();
-
-        int size = symptomDescriptions.size();
-
-        //Second: For loop to display the data
-
-        TextView temp;
-        TextView temp2;
-
-
-        for (int i = 0; i < size; i++) {
-            temp = new TextView(this);
-            temp2 = new TextView(this);
-
-            temp.setTextSize(18);
-            temp.setTextColor(Color.parseColor("#000000"));;
-            temp.setTypeface(null, Typeface.BOLD);
-            temp.setGravity(Gravity.CENTER);
-
-            temp2.setTextSize(14);
-            temp2.setTextColor(Color.parseColor("#000000"));;
-            temp2.setGravity(Gravity.CENTER);
-
-            temp.setText("\n" + symptomDates.get(i) + " - " + symptomRatings.get(i) + "\n");
-            temp2.setText(symptomDescriptions.get(i) + "\n" + "\n" + "_______________________________________" + "\n");
-
-            myLinearLayout.addView(temp);
-            myLinearLayout.addView(temp2);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        size = symptomDates.size();
+        recyclerView.setLayoutManager(layoutManager);
+        List<List<String>> input = new ArrayList<>();
+        for(int i = 0; i < size; i++){
+            input.add(List.of(symptomDates.get(i), symptomRatings.get(i), symptomDescriptions.get(i)));
         }
-
-        symptomsList.setText("You have symptom logs for the past " + size + " day(s)");
-        symptomsList.setTextColor(Color.parseColor("#000000"));
+        SymptomList.setText("You have symptom logs for the past " + size + " day(s)");
+        SymptomList.setTextColor(Color.parseColor("#000000"));
+        mAdapter = new SymptomRecyclerViewAdapter(input);
+        recyclerView.setAdapter(mAdapter);
+        confirm = (Button) findViewById(R.id.button_Confirm);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

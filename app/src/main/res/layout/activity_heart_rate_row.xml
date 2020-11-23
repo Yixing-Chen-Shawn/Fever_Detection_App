@@ -9,10 +9,13 @@
         android:id="@+id/healthCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
         android:layout_margin="5dp"
-        android:background="@drawable/shape"
         app:cardCornerRadius="6dp"
-        app:strokeColor="#000"
+        app:strokeColor="@color/cardCornerGrey"
         app:strokeWidth="1dp">
 
         <RelativeLayout
@@ -34,7 +37,7 @@
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:text="Date: "
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:textColor="@color/black"
         android:textSize="13dp" />
 
@@ -45,7 +48,7 @@
         android:layout_below="@id/firstLine"
         android:text="Heart Rate: "
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:textSize="13dp" />
@@ -59,7 +62,7 @@
         android:gravity="center_horizontal"
         android:text="Contacts"
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:textSize="13dp" />
 
     <TextView
@@ -71,7 +74,7 @@
         android:gravity="center_horizontal"
         android:text="Body Temp: "
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:textSize="13dp" />
 
     <TextView
@@ -83,7 +86,7 @@
         android:gravity="center_horizontal"
         android:text="Blood Pressure: "
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:textSize="13dp" />
 
         </RelativeLayout>

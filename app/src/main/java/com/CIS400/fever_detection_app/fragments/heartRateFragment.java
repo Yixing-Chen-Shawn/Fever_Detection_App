@@ -18,6 +18,7 @@ import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.ManualHealthActivity;
 import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
 import com.CIS400.fever_detection_app.activity.NotificationsActivity;
+import com.CIS400.fever_detection_app.adapters.StateDataAdapter;
 import com.CIS400.fever_detection_app.data.MyUser;
 
 import java.util.List;
@@ -42,12 +43,17 @@ public class heartRateFragment extends Fragment {
         healthAlert = (ImageView) view.findViewById(R.id.healthCenter_alert);
         alertIcon = (ImageView) view.findViewById(R.id.healthCenter_alert_icon);
         alertIcon.setVisibility(View.INVISIBLE);
+        healthAlert.setVisibility(View.VISIBLE);
         symptomDescriptions = user.getSymptoms();
         symptomDates = user.getSymptomDates();
         symptomRatings = user.getSymptomRatings();
 
         if (symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
             alertIcon.setVisibility(View.VISIBLE);
+        }else{
+            if(alertIcon.getVisibility() == View.VISIBLE){
+                alertIcon.setVisibility(View.INVISIBLE);
+            }
         }
 
         healthAlert.setOnClickListener(new View.OnClickListener() {

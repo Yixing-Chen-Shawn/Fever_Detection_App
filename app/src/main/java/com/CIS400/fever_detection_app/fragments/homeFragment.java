@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
@@ -19,8 +20,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.CIS400.fever_detection_app.R;
+import com.CIS400.fever_detection_app.activity.ActivityCollector;
 import com.CIS400.fever_detection_app.activity.CoronaStatsActivity;
 import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
+import com.CIS400.fever_detection_app.activity.LoginActivity;
 import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
 import com.CIS400.fever_detection_app.activity.NotificationsActivity;
 import com.CIS400.fever_detection_app.activity.SymptomsLogActivity;
@@ -31,7 +34,7 @@ import java.util.List;
 
 public class homeFragment extends Fragment {
 
-    private ImageView alertIcon;
+    private ImageView alertIcon, homeAlert;
     private Button button, symptom_but, health_but;
     private List<String> symptomRatings;
     private MyUser user;
@@ -42,18 +45,27 @@ public class homeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Bmob.initialize(getActivity(), "2de9dc3c787359faf54d36e92a2bbfb0");
         user = BmobUser.getCurrentUser(MyUser.class);
+        if(user == null){
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+            new ActivityCollector().finishAll();
+        }
         button = (Button) view.findViewById(R.id.button_Covid);
         symptom_but = (Button) view.findViewById(R.id.button_Symptom);
         health_but = (Button) view.findViewById(R.id.button_health);
 
         alertIcon = (ImageView) view.findViewById(R.id.alert_icon);
-        ImageView homeAlert = (ImageView) view.findViewById(R.id.home_alert);
+        homeAlert = (ImageView) view.findViewById(R.id.home_alert);
 
         //1. Initially set alertIcon to invisible
         alertIcon.setVisibility(View.INVISIBLE);
+        homeAlert.setVisibility(View.VISIBLE);
         symptomRatings = user.getSymptomRatings();
         if (symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
             alertIcon.setVisibility(View.VISIBLE);
+        }else{
+            if(alertIcon.getVisibility() == View.VISIBLE){
+                alertIcon.setVisibility(View.INVISIBLE);
+            }
         }
 
 
