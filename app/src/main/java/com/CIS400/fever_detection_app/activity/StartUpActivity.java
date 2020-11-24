@@ -15,12 +15,12 @@ public class StartUpActivity extends BaseActivity {
         startActivity(new Intent(StartUpActivity.this, MainActivity.class));
         finish();
 
-        /*new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(StartUpActivity.this, LoginActivity.class));
                 finish();
             }
-        }, 2500);*/
+        }, 2500);
     }
 }

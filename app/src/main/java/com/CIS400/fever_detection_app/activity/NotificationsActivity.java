@@ -25,6 +25,7 @@ public class NotificationsActivity extends BaseActivity{
     private List<String> bodytemp, heartrate, blood, symptomRatings, healthdate;
     private TextView newNotification, notificationDescription, notibodytemp, notiheartrate, notiblood;
     private ImageView notidotbodytemp, notidotheartrate, notidotblood, notidotrating;
+    private double max;
 
 
     @Override
@@ -68,13 +69,14 @@ public class NotificationsActivity extends BaseActivity{
         notificationDescription.setVisibility(View.INVISIBLE);
         notidotrating.setVisibility(View.INVISIBLE);
 
-
+        max = Integer.MIN_VALUE;
         for(String bt : bodytemp){
             if(!bt.equals("Unknown")){
                 double temp = Double.parseDouble(bt);
+                max = Math.max(max, temp);
                 if(temp < 36.5 || temp > 37){
                     newNotification.setText("You have a new notification");
-                    notibodytemp.setText("Hi! We've noticed your body temperature is not within normal range: " + temp + "°C.");
+                    notibodytemp.setText("Hi! We've noticed your body temperature is not within normal range: " + max + "°C.");
                     notibodytemp.setVisibility(View.VISIBLE);
                     notidotbodytemp.setVisibility(View.VISIBLE);
                     notificationDescription.setVisibility(View.VISIBLE);
@@ -94,12 +96,14 @@ public class NotificationsActivity extends BaseActivity{
             suPharmacy.setVisibility(View.VISIBLE);
         }
 
+        max = Integer.MIN_VALUE;
         for(String hr : heartrate){
             if(!hr.equals("Unknown")){
                 double rate = Double.parseDouble(hr);
+                max = Math.max(max, rate);
                 if(rate < 60 || rate > 100){
                     newNotification.setText("You have a new notification");
-                    notiheartrate.setText("Hi! We've noticed your heart rate per minute is not within normal range: " + rate + "bpm.");
+                    notiheartrate.setText("Hi! We've noticed your heart rate per minute is not within normal range: " + max + "bpm.");
                     notiheartrate.setVisibility(View.VISIBLE);
                     notidotheartrate.setVisibility(View.VISIBLE);
                     notificationDescription.setVisibility(View.VISIBLE);
@@ -119,13 +123,14 @@ public class NotificationsActivity extends BaseActivity{
             suPharmacy.setVisibility(View.VISIBLE);
         }
 
-
+        max = Integer.MIN_VALUE;
         for(String b : blood){
             if(!b.equals("Unknown")){
                 double bp = Double.parseDouble(b);
+                max = Math.max(max, bp);
                 if(bp < 80 || bp > 120){
                     newNotification.setText("You have a new notification");
-                    notiblood.setText("Hi! We've noticed your blood pressure is not within normal range: " + bp + "mmHg.");
+                    notiblood.setText("Hi! We've noticed your blood pressure is not within normal range: " + max + "mmHg.");
                     notiblood.setVisibility(View.VISIBLE);
                     notidotblood.setVisibility(View.VISIBLE);
                     notificationDescription.setVisibility(View.VISIBLE);
@@ -144,6 +149,7 @@ public class NotificationsActivity extends BaseActivity{
             suHealthCare.setVisibility(View.VISIBLE);
             suPharmacy.setVisibility(View.VISIBLE);
         }
+
         //Check if any ratings were a two or a one
         if (notibodytemp.getVisibility() == View.VISIBLE || notiheartrate.getVisibility() == View.VISIBLE || notiblood.getVisibility() == View.VISIBLE || symptomRatings.contains("2 (Not Good)") || symptomRatings.contains("1 (Feeling Terrible)")) {
             newNotification.setText("You have a new notification");

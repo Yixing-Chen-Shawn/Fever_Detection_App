@@ -51,6 +51,7 @@ public class homeFragment extends Fragment {
         if(user == null){
             startActivity(new Intent(getActivity(), LoginActivity.class));
             new ActivityCollector().finishAll();
+            return view;
         }
         button = (Button) view.findViewById(R.id.button_Covid);
         symptom_but = (Button) view.findViewById(R.id.button_Symptom);
