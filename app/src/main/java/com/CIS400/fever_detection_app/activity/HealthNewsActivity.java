@@ -16,32 +16,36 @@ import com.android.volley.toolbox.Volley;
 
 public class HealthNewsActivity extends BaseActivity{
     private String rssUrl = "https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en";
+    public TextView news1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_news);
+        news1 = (TextView) findViewById(R.id.rssLine0);
+        news1.setText("Getting news");
+        getNews();
+    }
 
+    public void getNews(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        TextView firstLine = (TextView) findViewById(R.id.rssLine0);
-
         class ListenerParser implements Response.Listener<String> {
             private Boolean status = false;
             @Override
             public void onResponse(String response) {
                 try{
                     int[] idx = parseRss("<title>","</title>",response);
-                    firstLine.setText(response.substring(idx[1],idx[3]));
+                    news1.setText(response.substring(idx[1],idx[3]));
                     idx = parseRss("<link>","</link>",response);
 
                     int[] finalIdx = idx;
-                    firstLine.setOnClickListener(new View.OnClickListener(){
+                    news1.setOnClickListener(new View.OnClickListener(){
                         public void onClick(View v){
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(response.substring(finalIdx[1], finalIdx[3])));
                             startActivity(browserIntent);
                         }
                     });
                 } catch (Exception e){
-                    firstLine.setText("There is someting wrong with the RSS feed");
+                    news1.setText("There is someting wrong with the RSS feed");
                 }
             }
 
@@ -73,7 +77,7 @@ public class HealthNewsActivity extends BaseActivity{
                 , new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                firstLine.setText("Unable to get news.");
+                news1.setText("Unable to get news.");
             }
         });
         queue.add(stringRequest);
