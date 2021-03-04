@@ -183,5 +183,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDT98N1bS6B2JY4zPrG_xNoc8PnbxgOP2Q</string>
+    <string name="location.permission_denied">Location Permission Denied</string>
+    <string name="no_location">Location is not available</string>
 
 </resources>
