@@ -168,5 +168,11 @@
         android:text="View My Symptom Log"
         android:textAllCaps="false"
         android:textColor="@color/white" />
-
+    <Button android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:layout_width="300dp"
+        android:id="@+id/button_healthNews"
+        android:textColor="@color/white"
+        android:text="View Health News"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
