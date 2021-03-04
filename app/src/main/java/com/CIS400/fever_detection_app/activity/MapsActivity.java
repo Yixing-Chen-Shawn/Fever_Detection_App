@@ -96,15 +96,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //Log.i("Loc: ", mLastLocation.getLatitude() + " " + mLastLocation.getLongitude());
-        //if(mLastLocation == null) return;
         LatLng latLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
         mMap.addMarker(new MarkerOptions()
                 .position(latLng)
                 .title("I am here!"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        /*mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));*/
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
     }
 
     @Override
