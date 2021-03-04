@@ -19,6 +19,7 @@ import com.CIS400.fever_detection_app.activity.ContactsLogActivity;
 import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.ManualHealthActivity;
 import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
+import com.CIS400.fever_detection_app.activity.MapsActivity;
 import com.CIS400.fever_detection_app.activity.NotificationsActivity;
 import com.CIS400.fever_detection_app.adapters.StateDataAdapter;
 import com.CIS400.fever_detection_app.data.MyUser;
@@ -43,6 +44,7 @@ public class heartRateFragment extends Fragment {
         user = BmobUser.getCurrentUser(MyUser.class);
         Button manualhealth = (Button) view.findViewById(R.id.healthCenter_healthButt);
         Button manualInput = (Button) view.findViewById(R.id.manualInput);
+        Button findHospitals = (Button) view.findViewById(R.id.hospital_butt);
         healthAlert = (ImageView) view.findViewById(R.id.healthCenter_alert);
         alertIcon = (ImageView) view.findViewById(R.id.healthCenter_alert_icon);
         alertIcon.setVisibility(View.INVISIBLE);
@@ -83,6 +85,7 @@ public class heartRateFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ManualHealthActivity.class));
             }
         });
+
         manualInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +93,12 @@ public class heartRateFragment extends Fragment {
             }
         });
 
-
+        findHospitals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MapsActivity.class));
+            }
+        });
         return view;
     }
 }

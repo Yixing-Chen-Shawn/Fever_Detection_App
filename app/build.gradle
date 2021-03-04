@@ -6,10 +6,11 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.CIS400.fever_detection_app"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,13 +33,14 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
     //noinspection GradleCompatible
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    //compile 'com.android.support:appcompat-v7:23.1.1'
+    //implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -50,6 +52,9 @@ dependencies {
     implementation 'com.squareup.okio:okio:2.2.2'
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    //multiDexEnabled
+    implementation 'androidx.multidex:multidex:2.0.1'
+
     //Material Design
     implementation 'com.google.android.material:material:1.0.0'
 
@@ -59,6 +64,8 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.0.0-beta01'
 
+    //Google Play API
+    implementation 'com.google.android.gms:play-services-location:11.8.0'
 
     //Toolbar
     implementation 'androidx.appcompat:appcompat:1.1.0'
