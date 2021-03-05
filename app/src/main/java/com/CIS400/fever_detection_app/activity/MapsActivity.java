@@ -12,6 +12,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Iterator;
+
 
 import com.CIS400.fever_detection_app.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -28,6 +37,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.io.IOException;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -35,6 +53,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location mLastLocation;
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationCallback locationCallback;
+
+    private ArrayList<String> names = new ArrayList<String>();
+    private ArrayList<Double> latitudes = new ArrayList<Double>();
+    private ArrayList<Double> longitudes = new ArrayList<Double>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +106,84 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    private void httpRequest() {
+
+        // HTTP REQUEST
+        OkHttpClient client = new OkHttpClient();
+        String test = "Hello " + "Kanoa";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + mLastLocation.getLatitude() + "," + mLastLocation.getLongitude() + "&radius=16093&types=hospital&key=AIzaSyDT98N1bS6B2JY4zPrG_xNoc8PnbxgOP2Q";
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    final String myResponse = response.body().string();
+
+                    MapsActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Log.d("myTag", myResponse);
+                            try {
+                                getNearbyHospitals(myResponse);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+
+
+    }
+
+    private void getNearbyHospitals(String json) throws JSONException {
+
+
+        JSONObject newJson = new JSONObject(json);
+        JSONArray results = newJson.getJSONArray("results");
+
+
+        for(int i = 0; i < results.length(); i++) {
+
+            names.add(results.getJSONObject(i).getString("name"));
+
+            //Log.d("tester", "" + results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat") + "");
+            latitudes.add(results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat") );
+            longitudes.add(results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng"));
+        }
+
+        rePinMap();
+
+
+        //Log.d("lat", "" + latitudes.size() + "");
+
+
+    }
+
+    private void rePinMap() {
+        LatLng latLng;
+        Log.d("size", "" + names.size() + "");
+
+        for (int i = 0; i < names.size(); i++) {
+            latLng = new LatLng(latitudes.get(i), longitudes.get(i));
+            mMap.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .title(names.get(i)));
+
+        }
+
+    }
+
+
 
     /**
      * Manipulates the map once available.
@@ -102,6 +203,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("I am here!"));
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        httpRequest();
+
     }
 
     @Override
