@@ -84,7 +84,7 @@ public class SymptomsLogActivity extends BaseActivity {
         for(int i = 0; i < size; i++){
             input.add(List.of(symptomDates.get(i), symptomRatings.get(i), symptomDescriptions.get(i)));
         }
-        SymptomList.setText("You have symptom logs for the past " + size + " day(s)");
+        SymptomList.setText("You have journal entry's  for the past " + size + " day(s)");
         SymptomList.setTextColor(Color.parseColor("#000000"));
         mAdapter = new SymptomRecyclerViewAdapter(input);
         recyclerView.setAdapter(mAdapter);
