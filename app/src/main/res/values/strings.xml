@@ -21,8 +21,8 @@
     <string name="disclaimer">This app is designed to assist in social distancing measures only and works by broadcasting your location unencrypted to nearby devices running compatible apps\n\nDo not begin broadcasting if doing so would in any way compromise the safety or security of anybody</string>
     <string name="agreement_checkbox">I agree broadcasting my location does not impose a serious security or safety threat</string>
 
-    <string name="action_add">Add Symptom</string>
-    <string name="action_delete">Delete Symptom</string>
+    <string name="action_add"> Add Journal Entry</string>
+    <string name="action_delete">Delete Journal Entry</string>
     <string name="action_clear">Clear All</string>
 
     <string name="action_addH">Add Health Record</string>
@@ -181,9 +181,5 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDT98N1bS6B2JY4zPrG_xNoc8PnbxgOP2Q</string>
-    <string name="location.permission_denied">Location Permission Denied</string>
-    <string name="no_location">Location is not available</string>
 
 </resources>
