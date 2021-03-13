@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
-            android:text="Health Statistics"
+            android:text="Meal Planner"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -48,127 +48,96 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/dateInput_date"
-        android:layout_width="329dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
+    <Button
+        android:id="@+id/getMealButton"
+        android:layout_width="198dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:hint="MM/DD/YEAR"
-        android:textSize="13dp"
-        android:inputType="date"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Get Meal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="369dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <RadioButton
+            android:id="@+id/breakfast_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Breakfast" />
+
+        <RadioButton
+            android:id="@+id/lunch_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lunch" />
+
+        <RadioButton
+            android:id="@+id/dinner_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dinner" />
+
+        <RadioButton
+            android:id="@+id/dessert_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dessert" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/meal_title"
+        android:layout_width="370dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getMealButton" />
+
+    <TextView
+        android:id="@+id/meal_summary"
+        android:layout_width="368dp"
+        android:layout_height="233dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_title" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="372dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Select Dish You Would Like:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topbar_health" />
-
-    <EditText
-        android:id="@+id/dateInput_heart_rate"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Heart Beats Per Minute (-1 if not know)"
-        android:textSize="13dp"
-        android:inputType="numberDecimal|numberSigned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInput_date" />
-
-    <EditText
-        android:id="@+id/dateInput_contacts"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Number of contacts today (-1 if not know)"
-        android:textSize="13dp"
-        android:inputType="numberDecimal|numberSigned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInput_heart_rate" />
-
-    <EditText
-        android:id="@+id/dateInput_bodyTemp"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Body temperature in Celsius(°C) (-1 if not know)"
-        android:textSize="13dp"
-        android:inputType="numberDecimal|numberSigned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInput_contacts" />
-
-    <EditText
-        android:id="@+id/dateInput_bloody_pressure"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Blood pressure in mmHg (-1 if not know)"
-        android:textSize="13dp"
-        android:inputType="numberDecimal|numberSigned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInput_bodyTemp" />
-
-    <Button
-        android:id="@+id/saveButton_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:background="@drawable/shape"
-        android:text="Upload health stats"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInput_bloody_pressure" />
-
-    <Button
-        android:id="@+id/BackButton_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:background="@drawable/shape"
-        android:text="Back to health log"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton_health" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

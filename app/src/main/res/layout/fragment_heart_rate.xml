@@ -114,11 +114,11 @@
         android:id="@+id/healthCenter_healthButt"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
-        android:text="Manually Input Health Stats"
+        android:text="Meal Planner"
         android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
         android:textSize="20dp" />
 
     <Button
