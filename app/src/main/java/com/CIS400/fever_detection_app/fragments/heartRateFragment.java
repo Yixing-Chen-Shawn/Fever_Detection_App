@@ -20,6 +20,7 @@ import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.ManualHealthActivity;
 import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
 import com.CIS400.fever_detection_app.activity.MapsActivity;
+import com.CIS400.fever_detection_app.activity.MealPlanner;
 import com.CIS400.fever_detection_app.activity.NotificationsActivity;
 import com.CIS400.fever_detection_app.adapters.StateDataAdapter;
 import com.CIS400.fever_detection_app.data.MyUser;
@@ -42,6 +43,7 @@ public class heartRateFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_heart_rate, container, false);
         Bmob.initialize(getActivity(), "2de9dc3c787359faf54d36e92a2bbfb0");
         user = BmobUser.getCurrentUser(MyUser.class);
+        Button mealPlanner = (Button) view.findViewById(R.id.mealPlanButton);
         Button manualhealth = (Button) view.findViewById(R.id.healthCenter_healthButt);
         Button manualInput = (Button) view.findViewById(R.id.manualInput);
         Button findHospitals = (Button) view.findViewById(R.id.hospital_butt);
@@ -99,6 +101,14 @@ public class heartRateFragment extends Fragment {
                 startActivity(new Intent(getActivity(), MapsActivity.class));
             }
         });
+
+        mealPlanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MealPlanner.class));
+            }
+        });
+
         return view;
     }
 }

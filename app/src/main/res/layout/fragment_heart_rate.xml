@@ -69,10 +69,10 @@
         android:layout_height="150dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/heartrate_background"/>
 
-    <!--<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="8dp"
@@ -98,17 +98,18 @@
             android:padding="16dp"
             android:textSize="18sp" />
 
-    </LinearLayout>-->
+    </LinearLayout>
 
-    <!--<Button
+    <Button
+        android:id="@+id/mealPlanButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
-        android:text="Start measurement"
+        android:text="Meal Planner"
         android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20dp" />-->
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/healthCenter_healthButt"
@@ -140,18 +141,6 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
         android:text="Find nearby hospitals"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        />
-
-    <Button
-        android:id="@+id/step_counter_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/shape"
-        android:text="Daily Step Counter"
         android:textColor="@color/white"
         android:textSize="20dp"
         />
