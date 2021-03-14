@@ -25,7 +25,7 @@ import java.util.Map;
 
 
 public class HealthNewsActivity extends BaseActivity{
-    private String jsonUrl = "http://newsapi.org/v2/top-headlines?qInTitle=('New York')&country=us&catagory=health&apiKey=96addd4bc8af46d1881803c589c42e22";
+    private String jsonUrl = "http://newsapi.org/v2/top-headlines?country=us&catagory=health&apiKey=96addd4bc8af46d1881803c589c42e22";
     public TextView news0;
     public ImageView news0Img;
     public TextView[] news = new TextView[4];
