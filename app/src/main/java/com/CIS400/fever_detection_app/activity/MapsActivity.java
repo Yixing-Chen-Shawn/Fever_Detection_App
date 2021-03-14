@@ -1,6 +1,7 @@
 package com.CIS400.fever_detection_app.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -110,7 +111,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // HTTP REQUEST
         OkHttpClient client = new OkHttpClient();
-        String test = "Hello " + "Kanoa";
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + mLastLocation.getLatitude() + "," + mLastLocation.getLongitude() + "&radius=16093&types=hospital&key=AIzaSyDT98N1bS6B2JY4zPrG_xNoc8PnbxgOP2Q";
         Request request = new Request.Builder()
                 .url(url)
@@ -129,7 +129,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     MapsActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //Log.d("myTag", myResponse);
                             try {
                                 getNearbyHospitals(myResponse);
                             } catch (JSONException e) {
@@ -153,20 +152,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         for(int i = 0; i < results.length(); i++) {
-
             names.add(results.getJSONObject(i).getString("name"));
-
-            //Log.d("tester", "" + results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat") + "");
             latitudes.add(results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat") );
             longitudes.add(results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng"));
         }
 
         rePinMap();
-
-
-        //Log.d("lat", "" + latitudes.size() + "");
-
-
     }
 
     private void rePinMap() {

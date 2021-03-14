@@ -22,6 +22,7 @@ import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
 import com.CIS400.fever_detection_app.activity.MapsActivity;
 import com.CIS400.fever_detection_app.activity.MealPlanner;
 import com.CIS400.fever_detection_app.activity.NotificationsActivity;
+import com.CIS400.fever_detection_app.activity.StepCountActivity;
 import com.CIS400.fever_detection_app.adapters.StateDataAdapter;
 import com.CIS400.fever_detection_app.data.MyUser;
 
@@ -36,6 +37,7 @@ public class heartRateFragment extends Fragment {
     private ImageView healthAlert, alertIcon;
     private List<String> symptomDescriptions, symptomDates, symptomRatings, bodytemp, heartrate, blood;
     private MyUser user;
+    private Button manualhealth, manualInput, findHospitals, stepCounter;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -43,10 +45,13 @@ public class heartRateFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_heart_rate, container, false);
         Bmob.initialize(getActivity(), "2de9dc3c787359faf54d36e92a2bbfb0");
         user = BmobUser.getCurrentUser(MyUser.class);
+
         Button mealPlanner = (Button) view.findViewById(R.id.mealPlanButton);
-        Button manualhealth = (Button) view.findViewById(R.id.healthCenter_healthButt);
-        Button manualInput = (Button) view.findViewById(R.id.manualInput);
-        Button findHospitals = (Button) view.findViewById(R.id.hospital_butt);
+        manualhealth = (Button) view.findViewById(R.id.healthCenter_healthButt);
+        manualInput = (Button) view.findViewById(R.id.manualInput);
+        findHospitals = (Button) view.findViewById(R.id.hospital_butt);
+        stepCounter = (Button) view.findViewById(R.id.step_counter_btn);
+
         healthAlert = (ImageView) view.findViewById(R.id.healthCenter_alert);
         alertIcon = (ImageView) view.findViewById(R.id.healthCenter_alert_icon);
         alertIcon.setVisibility(View.INVISIBLE);
@@ -102,10 +107,18 @@ public class heartRateFragment extends Fragment {
             }
         });
 
+
         mealPlanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), MealPlanner.class));
+            }
+        });
+
+        stepCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), StepCountActivity.class));
             }
         });
 
