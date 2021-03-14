@@ -5,149 +5,149 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.CIS400.fever_detection_app.R;
 import com.CIS400.fever_detection_app.data.MyUser;
 
-import org.json.JSONException;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class ManualHealthActivity extends AppCompatActivity {
-
+    private EditText date, heartrate, contacts, bodytemp, blood;
+    private String sdate, sheartrate, scontacts, sbodytemp, sblood;
+    private List<String> datel, heartratel, contactl, bodytempl, bloodl;
+    private int size;
     private Button save, back;
     private MyUser user;
     private ImageView backButton;
-
-    private RadioButton breakfastRadio;
-    private RadioButton lunchRadio;
-    private RadioButton dinnerRadio;
-    private RadioButton dessertRadio;
-    private TextView mealTitle;
-    private TextView mealSummary;
-    private Button getMeal;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_health);
         Bmob.initialize(this, "2de9dc3c787359faf54d36e92a2bbfb0");
-
+        date = (EditText) findViewById(R.id.dateInput_date);
+        heartrate = (EditText) findViewById(R.id.dateInput_heart_rate);
+        contacts = (EditText) findViewById(R.id.dateInput_contacts);
+        bodytemp = (EditText) findViewById(R.id.dateInput_bodyTemp);
+        blood = (EditText) findViewById(R.id.dateInput_bloody_pressure);
+        save = (Button) findViewById(R.id.saveButton_health);
+        back = (Button) findViewById(R.id.BackButton_health);
         backButton = (ImageView) findViewById(R.id.back_manualHealth);
-        breakfastRadio = (RadioButton) findViewById(R.id.breakfast_radio);
-        lunchRadio = (RadioButton) findViewById(R.id.lunch_radio);
-        dinnerRadio = (RadioButton) findViewById(R.id.dinner_radio);
-        dessertRadio = (RadioButton) findViewById(R.id.dessert_radio);
-        mealTitle = (TextView) findViewById(R.id.meal_title);
-        mealSummary = (TextView) findViewById(R.id.meal_summary);
-        getMeal = (Button) findViewById(R.id.getMealButton);
-
         user = BmobUser.getCurrentUser(MyUser.class);
 
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sdate = date.getText().toString().trim();
+                sheartrate = heartrate.getText().toString().trim();
+                scontacts = contacts.getText().toString().trim();
+                sbodytemp = bodytemp.getText().toString().trim();
+                sblood = blood.getText().toString().trim();
+                datel = user.getHrdates();
+                heartratel = user.getHeartRate();
+                contactl = user.getContacts();
+                bodytempl = user.getBodyTemp();
+                bloodl = user.getBlood();
+
+                if (sdate.matches("") || sheartrate.matches("") || scontacts.matches("") || sbodytemp.matches("") || sblood.matches("")) {
+                    Toast.makeText(ManualHealthActivity.this, "Error: Fill in all items", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (!sdate.matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
+                    Toast.makeText(ManualHealthActivity.this, "Date Format Error: Use format MM/DD/YEAR", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(Double.parseDouble(sheartrate) < 0){
+                    sheartrate = "Unknown";
+                }
+
+                if(Double.parseDouble(scontacts) < 0){
+                    scontacts = "Unknown";
+                }
 
 
+                if(Double.parseDouble(sbodytemp) < 0){
+                    sbodytemp = "Unknown";
+                }
 
 
+                if(Double.parseDouble(sblood) < 0){
+                    sblood = "Unknown";
+                }
+
+                if(datel.contains(sdate)){
+                    int idx = datel.indexOf(sdate);
+                    heartratel.set(idx, sheartrate);
+                    contactl.set(idx, scontacts);
+                    bodytempl.set(idx, sbodytemp);
+                    bloodl.set(idx, sblood);
+                    displayToast("Record on " + sdate + " has been overwritten.");
+                    user.update(new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if(e == null){
+                                Toast.makeText(ManualHealthActivity.this, "Successful!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(ManualHealthActivity.this, HeartRateLogActivity.class));
+
+                            }else{
+                                Toast.makeText(ManualHealthActivity.this, "User Update failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                    return;
+                }
+
+                user.setHrdates(sdate);
+                user.setHeartRate(sheartrate);
+                user.setContacts(scontacts);
+                user.setBodyTemp(sbodytemp);
+                user.setBlood(sblood);
+
+                datel = user.getHrdates();
+                size = datel.size();
+                if(size > 31) user.deleteHealthStats();
+
+                //Update Database
+                user.update(new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if(e == null){
+                            Toast.makeText(ManualHealthActivity.this, "Successful!", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(ManualHealthActivity.this, HeartRateLogActivity.class));
+
+                        }else{
+                            Toast.makeText(ManualHealthActivity.this, "User Update failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ManualHealthActivity.this, HeartRateLogActivity.class));
+                finish();
+            }
+        });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
-        getMeal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                prepareForHttpRequest();
-                //httpRequest();
-            }
-        });
-    }
-
-    private void prepareForHttpRequest() {
-        Boolean breakfastRadioChecked = breakfastRadio.isChecked();
-        Boolean lunchRadioChecked = lunchRadio.isChecked();
-        Boolean dinnerRadioChecked = dinnerRadio.isChecked();
-        Boolean dessertRadioChecked = dessertRadio.isChecked();
-
-        if (breakfastRadioChecked) {
-            httpRequest("&tags=breakfast");
-        } else if (lunchRadioChecked) {
-            httpRequest("&tags=lunch");
-        } else if (dinnerRadioChecked) {
-            httpRequest("&tags=dinner");
-        } else if (dessertRadioChecked) {
-            httpRequest("&tags=dessert");
-        } else {
-            httpRequest("");
-        }
-    }
-
-    private void httpRequest(String mealType) {
-
-        // HTTP REQUEST
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://api.spoonacular.com/recipes/random?number=1" + mealType + "&apiKey=fb66054ae8124ef7970d33b3aafa8c93";
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    final String myResponse = response.body().string();
-
-                    ManualHealthActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                getMeals(myResponse);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                }
-            }
-        });
-    }
-
-    private void getMeals(String json) throws JSONException{
-
-        JSONObject newJson = new JSONObject(json);
-        JSONArray recipes = newJson.getJSONArray("recipes");
-        //names.add(results.getJSONObject(i).getString("name"));
-        mealTitle.setText(recipes.getJSONObject(0).getString("title"));
-        mealSummary.setText(recipes.getJSONObject(0).getString("instructions"));
-
-
     }
 
     @Override
@@ -164,7 +164,5 @@ public class ManualHealthActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message,
                 Toast.LENGTH_SHORT).show();
     }
-
-
 
 }
