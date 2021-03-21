@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.CIS400.fever_detection_app.R;
 import com.CIS400.fever_detection_app.data.MyUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
@@ -22,7 +25,11 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class ManualHealthActivity extends AppCompatActivity {
-    private EditText date, heartrate, contacts, bodytemp, blood;
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date_s;
+    private TextView date;
+    private EditText heartrate, contacts, bodytemp, blood;
     private String sdate, sheartrate, scontacts, sbodytemp, sblood;
     private List<String> datel, heartratel, contactl, bodytempl, bloodl;
     private int size;
@@ -35,7 +42,11 @@ public class ManualHealthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_health);
         Bmob.initialize(this, "2de9dc3c787359faf54d36e92a2bbfb0");
-        date = (EditText) findViewById(R.id.dateInput_date);
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        date_s = dateFormat.format(calendar.getTime());
+        date = (TextView) findViewById(R.id.dateInput_date);
+        date.setText("Current Date: " + date_s);
         heartrate = (EditText) findViewById(R.id.dateInput_heart_rate);
         contacts = (EditText) findViewById(R.id.dateInput_contacts);
         bodytemp = (EditText) findViewById(R.id.dateInput_bodyTemp);
@@ -48,7 +59,7 @@ public class ManualHealthActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sdate = date.getText().toString().trim();
+                sdate = date.getText().toString().substring(14).trim();
                 sheartrate = heartrate.getText().toString().trim();
                 scontacts = contacts.getText().toString().trim();
                 sbodytemp = bodytemp.getText().toString().trim();
@@ -64,10 +75,10 @@ public class ManualHealthActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (!sdate.matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
+                /*if (!sdate.matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
                     Toast.makeText(ManualHealthActivity.this, "Date Format Error: Use format MM/DD/YEAR", Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
 
                 if(Double.parseDouble(sheartrate) < 0){
                     sheartrate = "Unknown";
