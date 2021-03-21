@@ -52,6 +52,7 @@
         <activity android:name=".activity.ManualSymptomActivity" />
         <activity android:name=".activity.HealthNewsActivity" />
         <activity android:name=".activity.MealPlanner" />
+        <activity android:name=".activity.CalorieTrackerActivity" />
         <activity
             android:name=".activity.SymptomsLogActivity"
             android:windowSoftInputMode="adjustNothing" />
