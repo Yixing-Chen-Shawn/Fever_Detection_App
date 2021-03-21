@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.CIS400.fever_detection_app.R;
+import com.CIS400.fever_detection_app.activity.CalorieTrackerActivity;
 import com.CIS400.fever_detection_app.activity.ContactsLogActivity;
 import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.ManualHealthActivity;
@@ -37,7 +38,7 @@ public class heartRateFragment extends Fragment {
     private ImageView healthAlert, alertIcon;
     private List<String> symptomDescriptions, symptomDates, symptomRatings, bodytemp, heartrate, blood;
     private MyUser user;
-    private Button manualhealth, manualInput, findHospitals, stepCounter;
+    private Button manualhealth, manualInput, findHospitals, stepCounter, calorieTracker;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -51,6 +52,7 @@ public class heartRateFragment extends Fragment {
         manualInput = (Button) view.findViewById(R.id.manualInput);
         findHospitals = (Button) view.findViewById(R.id.hospital_butt);
         stepCounter = (Button) view.findViewById(R.id.step_counter_btn);
+        calorieTracker = (Button) view.findViewById(R.id.calorieTrackerButton);
 
         healthAlert = (ImageView) view.findViewById(R.id.healthCenter_alert);
         alertIcon = (ImageView) view.findViewById(R.id.healthCenter_alert_icon);
@@ -119,6 +121,13 @@ public class heartRateFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), StepCountActivity.class));
+            }
+        });
+
+        calorieTracker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CalorieTrackerActivity.class));
             }
         });
 
