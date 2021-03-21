@@ -55,6 +55,7 @@
         <activity android:name=".activity.ManualSymptomActivity" />
         <activity android:name=".activity.HealthNewsActivity" />
         <activity android:name=".activity.WorkoutActivity"/>
+        <activity android:name=".activity.NewsDisplayActivity"/>
         <activity
             android:name=".activity.SymptomsLogActivity"
             android:windowSoftInputMode="adjustNothing" />
