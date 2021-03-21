@@ -22,6 +22,8 @@ import com.CIS400.fever_detection_app.data.Symptoms;
 import com.CIS400.fever_detection_app.fragments.meFragment;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,11 @@ public class ManualSymptomActivity extends BaseActivity{
     private MyUser user;
     private List datel, descriptonl, ratingl;
     private Fragment mFrag1;
-    private EditText dateInput, descriptionInput;
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
+    private String date;
+    private TextView dateInput;
+    private EditText descriptionInput;
     private ImageView back;
 
 
@@ -54,12 +60,16 @@ public class ManualSymptomActivity extends BaseActivity{
         setContentView(R.layout.activity_manual_symptoms);
         Bmob.initialize(this, "2de9dc3c787359faf54d36e92a2bbfb0");
 
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        date = dateFormat.format(calendar.getTime());
         saveButton = (Button) findViewById(R.id.saveButton);
         backButton = (Button) findViewById(R.id.BackButton);
         back = (ImageView) findViewById(R.id.back_manualSymptom);
 
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
-        dateInput = (EditText)  findViewById(R.id.dateInput);
+        dateInput = (TextView) findViewById(R.id.dateInput);
+        dateInput.setText("Current Date: " + date);
 
         /*
         RadioButton one = (RadioButton) findViewById(R.id.One);
@@ -91,7 +101,7 @@ public class ManualSymptomActivity extends BaseActivity{
                 //Get radio button info
                 //radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
                 int selectedId = radioGroup.getCheckedRadioButtonId();
-                String dateInputs = dateInput.getText().toString().trim();
+                String dateInputs = dateInput.getText().toString().substring(14).trim();
                 String descriptionInputs = descriptionInput.getText().toString().trim();
                 String ratings = radioButton.getText().toString();
                 datel = user.getSymptomDates();
@@ -105,15 +115,15 @@ public class ManualSymptomActivity extends BaseActivity{
 
 
                 //Check if entries are empty
-                if (dateInput.getText().toString().trim().matches("") || descriptionInput.getText().toString().trim().matches("")) {
+                /*if (dateInput.getText().toString().trim().matches("") || descriptionInput.getText().toString().trim().matches("")) {
                     Toast.makeText(ManualSymptomActivity.this, "Error: Fill in all items", Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
 
-                if (!dateInput.getText().toString().trim().matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
+               /* if (!dateInput.getText().toString().trim().matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
                     Toast.makeText(ManualSymptomActivity.this, "Date Format Error: Use format MM/DD/YEAR", Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
 
                 if(datel.contains(dateInputs)){
                     int idx = datel.indexOf(dateInputs);

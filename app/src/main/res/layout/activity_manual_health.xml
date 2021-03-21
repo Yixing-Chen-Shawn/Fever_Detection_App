@@ -48,7 +48,7 @@
 
     </LinearLayout>
 
-    <EditText
+    <TextView
         android:id="@+id/dateInput_date"
         android:layout_width="329dp"
         android:layout_height="48dp"
@@ -59,7 +59,8 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:hint="MM/DD/YEAR"
-        android:textSize="13dp"
+        android:textSize="20dp"
+        android:textColor="@color/orange"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

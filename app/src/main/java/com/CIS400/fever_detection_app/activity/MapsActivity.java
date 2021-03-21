@@ -1,6 +1,7 @@
 package com.CIS400.fever_detection_app.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 

@@ -64,15 +64,15 @@
     </LinearLayout>
 
     <ImageView
-        android:paddingTop="30sp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="103dp"
+        android:layout_height="101dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/heartrate_background"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:paddingTop="30sp"
+        android:src="@drawable/heartrate_background" />
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="8dp"
@@ -98,16 +98,19 @@
             android:padding="16dp"
             android:textSize="18sp" />
 
-    </LinearLayout>
+    </LinearLayout>-->
+
 
     <Button
+        android:id="@+id/mealPlanButton"
+
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
-        android:text="Start measurement"
+        android:text="Meal Planner"
         android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
         android:textSize="20dp" />
 
     <Button
@@ -143,6 +146,29 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         />
+
+    <Button
+        android:id="@+id/step_counter_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape"
+        android:text="Daily Step Counter"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/calorieTrackerButton"
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape"
+        android:text="Calorie Tracker"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
 
 </LinearLayout>
