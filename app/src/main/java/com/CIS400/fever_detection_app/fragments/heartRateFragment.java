@@ -8,23 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.CIS400.fever_detection_app.R;
-import com.CIS400.fever_detection_app.activity.CalorieTrackerActivity;
-import com.CIS400.fever_detection_app.activity.ContactsLogActivity;
 import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.ManualHealthActivity;
 import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
 import com.CIS400.fever_detection_app.activity.MapsActivity;
-import com.CIS400.fever_detection_app.activity.MealPlanner;
 import com.CIS400.fever_detection_app.activity.NotificationsActivity;
-import com.CIS400.fever_detection_app.activity.StepCountActivity;
-import com.CIS400.fever_detection_app.adapters.StateDataAdapter;
 import com.CIS400.fever_detection_app.data.MyUser;
 
 import java.util.List;
@@ -38,7 +32,7 @@ public class heartRateFragment extends Fragment {
     private ImageView healthAlert, alertIcon;
     private List<String> symptomDescriptions, symptomDates, symptomRatings, bodytemp, heartrate, blood;
     private MyUser user;
-    private Button manualhealth, manualInput, findHospitals, stepCounter, calorieTracker;
+    private Button manualhealth, manualInput, findHospitals, health_but;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -46,13 +40,10 @@ public class heartRateFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_heart_rate, container, false);
         Bmob.initialize(getActivity(), "2de9dc3c787359faf54d36e92a2bbfb0");
         user = BmobUser.getCurrentUser(MyUser.class);
-
-        Button mealPlanner = (Button) view.findViewById(R.id.mealPlanButton);
         manualhealth = (Button) view.findViewById(R.id.healthCenter_healthButt);
         manualInput = (Button) view.findViewById(R.id.manualInput);
         findHospitals = (Button) view.findViewById(R.id.hospital_butt);
-        stepCounter = (Button) view.findViewById(R.id.step_counter_btn);
-        calorieTracker = (Button) view.findViewById(R.id.calorieTrackerButton);
+        health_but = (Button) view.findViewById(R.id.healthNews_Butt);
 
         healthAlert = (ImageView) view.findViewById(R.id.healthCenter_alert);
         alertIcon = (ImageView) view.findViewById(R.id.healthCenter_alert_icon);
@@ -109,25 +100,10 @@ public class heartRateFragment extends Fragment {
             }
         });
 
-
-        mealPlanner.setOnClickListener(new View.OnClickListener() {
+        health_but.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MealPlanner.class));
-            }
-        });
-
-        stepCounter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), StepCountActivity.class));
-            }
-        });
-
-        calorieTracker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CalorieTrackerActivity.class));
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HeartRateLogActivity.class));
             }
         });
 

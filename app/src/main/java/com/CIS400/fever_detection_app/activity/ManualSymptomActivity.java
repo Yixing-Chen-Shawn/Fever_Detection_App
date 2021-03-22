@@ -66,25 +66,11 @@ public class ManualSymptomActivity extends BaseActivity{
         saveButton = (Button) findViewById(R.id.saveButton);
         backButton = (Button) findViewById(R.id.BackButton);
         back = (ImageView) findViewById(R.id.back_manualSymptom);
-
         descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         dateInput = (TextView) findViewById(R.id.dateInput);
         dateInput.setText("Current Date: " + date);
-
-        /*
-        RadioButton one = (RadioButton) findViewById(R.id.One);
-        RadioButton two = (RadioButton) findViewById(R.id.Two);
-        RadioButton three = (RadioButton) findViewById(R.id.Three);
-        RadioButton four = (RadioButton) findViewById(R.id.Four);
-        RadioButton five = (RadioButton) findViewById(R.id.Five);
-         */
-
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        //int selectedId = 0;
-
         user = BmobUser.getCurrentUser(MyUser.class);
-
-        //addListenerOnButton();
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -98,8 +84,6 @@ public class ManualSymptomActivity extends BaseActivity{
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Get radio button info
-                //radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
                 int selectedId = radioGroup.getCheckedRadioButtonId();
                 String dateInputs = dateInput.getText().toString().substring(14).trim();
                 String descriptionInputs = descriptionInput.getText().toString().trim();
@@ -112,18 +96,6 @@ public class ManualSymptomActivity extends BaseActivity{
                     Toast.makeText(ManualSymptomActivity.this, "Error: Fill in all items", Toast.LENGTH_LONG).show();
                     return;
                 }
-
-
-                //Check if entries are empty
-                /*if (dateInput.getText().toString().trim().matches("") || descriptionInput.getText().toString().trim().matches("")) {
-                    Toast.makeText(ManualSymptomActivity.this, "Error: Fill in all items", Toast.LENGTH_LONG).show();
-                    return;
-                }*/
-
-               /* if (!dateInput.getText().toString().trim().matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
-                    Toast.makeText(ManualSymptomActivity.this, "Date Format Error: Use format MM/DD/YEAR", Toast.LENGTH_LONG).show();
-                    return;
-                }*/
 
                 if(datel.contains(dateInputs)){
                     int idx = datel.indexOf(dateInputs);
@@ -150,11 +122,6 @@ public class ManualSymptomActivity extends BaseActivity{
                 user.addSymptom(descriptionInput.getText().toString().trim());
                 user.addSymptomDate(dateInput.getText().toString().trim());
                 user.addSymptomRating(radioButton.getText().toString());
-
-                /*Check if radio input is 1 or 2. If so, make notificationViewed from MyUser = false so it displays alertIcon.
-                if (radioButton.getText().toString() == "2 (Not Good)" || radioButton.getText().toString() == "1 (Feeling Terrible)") {
-                    user.setNotificationViewed("False");
-                }*/
 
                 //Check to see if we reached the limit (10 item logs). If so delete the first symptom input
                 List<String> symptoms = user.getSymptoms();

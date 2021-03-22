@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Health Center"
+            android:text="Fitness Center"
             android:paddingLeft="30dp"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -39,7 +39,7 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:id="@+id/healthCenter_alert"
+                android:id="@+id/fitness_alert"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
@@ -47,7 +47,7 @@
                 android:src="@drawable/ic_notifications_white_24dp" />
 
             <ImageView
-                android:id="@+id/healthCenter_alert_icon"
+                android:id="@+id/fitness_alert_icon"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentTop="true"
@@ -73,52 +73,53 @@
         android:src="@drawable/heartrate_background" />
 
 
-    <Button
-        android:id="@+id/healthCenter_healthButt"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/shape"
-        android:text="Manually Input Health Stats"
-        android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20dp" />
 
 
     <Button
-        android:id="@+id/manualInput"
+        android:id="@+id/workoutPlanButton"
+
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
-        android:text="Manually Input Symptoms"
+        android:text="Workout Planner"
         android:textColor="@color/white"
         android:textSize="20dp" />
 
     <Button
-        android:id="@+id/hospital_butt"
+        android:id="@+id/mealPlanButton"
+
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
-        android:text="Find nearby hospitals"
+        android:text="Meal Planner"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/step_counter_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape"
+        android:text="Daily Step Counter"
         android:textColor="@color/white"
         android:textSize="20dp"
         />
 
     <Button
-        android:id="@+id/healthNews_Butt"
-        android:layout_width="300dp"
+        android:id="@+id/calorieTrackerButton"
+        android:layout_width="299dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape"
-        android:text="Daily Health News"
+        android:text="Calorie Tracker"
         android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
         android:textSize="20dp" />
-
-
 
 </LinearLayout>

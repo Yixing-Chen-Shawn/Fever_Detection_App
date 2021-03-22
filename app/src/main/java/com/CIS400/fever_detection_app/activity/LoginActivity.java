@@ -34,10 +34,6 @@ public class LoginActivity extends BaseActivity {
         btnForget = (Button) findViewById(R.id.btn_forgetpwd);
         MyUser user = BmobUser.getCurrentUser(MyUser.class);
 
-        /*if(user != null){
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(intent);
-        }*/
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -39,7 +39,7 @@ import java.util.List;
 public class homeFragment extends Fragment {
 
     private ImageView alertIcon, homeAlert;
-    private Button button, symptom_but, health_but, news_but, work_but;
+    private Button button, symptom_but;
     private List<String> bodytemp, heartrate, blood, symptomRatings;
     private MyUser user;
 
@@ -57,9 +57,6 @@ public class homeFragment extends Fragment {
         }
         button = (Button) view.findViewById(R.id.button_Covid);
         symptom_but = (Button) view.findViewById(R.id.button_Symptom);
-        health_but = (Button) view.findViewById(R.id.button_health);
-        news_but = (Button) view.findViewById(R.id.button_healthNews);
-        work_but = (Button) view.findViewById(R.id.workout);
 
         alertIcon = (ImageView) view.findViewById(R.id.alert_icon);
         homeAlert = (ImageView) view.findViewById(R.id.home_alert);
@@ -90,29 +87,11 @@ public class homeFragment extends Fragment {
             }
         });
 
-        health_but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), HeartRateLogActivity.class));
-            }
-        });
 
         symptom_but.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), SymptomsLogActivity.class));
-            }
-        });
-        news_but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), HealthNewsActivity.class));
-            }
-        });
-        work_but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), WorkoutActivity.class));
             }
         });
 

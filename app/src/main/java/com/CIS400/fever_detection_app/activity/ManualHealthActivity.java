@@ -75,11 +75,6 @@ public class ManualHealthActivity extends AppCompatActivity {
                     return;
                 }
 
-                /*if (!sdate.matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d$")) {
-                    Toast.makeText(ManualHealthActivity.this, "Date Format Error: Use format MM/DD/YEAR", Toast.LENGTH_LONG).show();
-                    return;
-                }*/
-
                 if(Double.parseDouble(sheartrate) < 0){
                     sheartrate = "Unknown";
                 }
