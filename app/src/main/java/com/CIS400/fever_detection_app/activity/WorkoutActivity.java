@@ -41,6 +41,7 @@ public class WorkoutActivity extends BaseActivity {
     public TableLayout exerciseTable;
     public JSONArray exerciseList;
     public TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
+    public TableRow.LayoutParams lp = new TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT,1.0f);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +72,9 @@ public class WorkoutActivity extends BaseActivity {
                         int id = (int) ((JSONObject) muscles.get(i)).get("id");
                         row.addView(muscleName);
                         row.setLayoutParams(params);
-                        muscleName.setText(((String) ((JSONObject) muscles.get(i)).get("name")) + "    ");
+                        muscleName.setText(((String) ((JSONObject) muscles.get(i)).get("name")));
                         muscleName.setTextSize(17);
+                        //muscleName.setLayoutParams(lp);
                         TextView exercise;
                         for(int j = 0; j < exerciseList.length(); j++) {
                             int language = (int) ((JSONObject) exerciseList.get(j)).get("language");

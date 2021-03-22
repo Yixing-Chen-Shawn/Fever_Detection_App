@@ -51,6 +51,8 @@
         <activity android:name=".activity.ForgetPasswordActivity" />
         <activity android:name=".activity.ManualSymptomActivity" />
         <activity android:name=".activity.HealthNewsActivity" />
+        <activity android:name=".activity.WorkoutActivity"/>
+        <activity android:name=".activity.NewsDisplayActivity"/>
         <activity android:name=".activity.MealPlanner" />
         <activity android:name=".activity.CalorieTrackerActivity" />
         <activity

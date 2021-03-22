@@ -25,7 +25,7 @@ import java.util.Map;
 
 
 public class HealthNewsActivity extends BaseActivity{
-    private String jsonUrl = "http://newsapi.org/v2/top-headlines?qInTitle=('New York')&country=us&catagory=health&apiKey=96addd4bc8af46d1881803c589c42e22";
+    private String jsonUrl = "http://newsapi.org/v2/top-headlines?country=us&catagory=health&apiKey=96addd4bc8af46d1881803c589c42e22";
     public TextView news0;
     public ImageView news0Img;
     public TextView[] news = new TextView[4];
@@ -64,14 +64,28 @@ public class HealthNewsActivity extends BaseActivity{
                     news0.setText((String) a0.get("title"));
                     news0.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url0));
-                            startActivity(browserIntent);
+                            Intent intent = new Intent(HealthNewsActivity.this, NewsDisplayActivity.class);
+                            Bundle b = new Bundle();
+                            try {
+                                b.putString("news", (String) a0.get("content"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            intent.putExtras(b);
+                            startActivity(intent);
                         }
                     });
                     news0Img.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url0));
-                            startActivity(browserIntent);
+                            Intent intent = new Intent(HealthNewsActivity.this, NewsDisplayActivity.class);
+                            Bundle b = new Bundle();
+                            try {
+                                b.putString("url", (String) a0.get("url"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            intent.putExtras(b);
+                            startActivity(intent);
                         }
                     });
 
@@ -81,13 +95,15 @@ public class HealthNewsActivity extends BaseActivity{
                         newsI.setText((String) articleI.get("title"));
                         newsI.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
-                                Intent browserIntent = null;
+                                Intent intent = new Intent(HealthNewsActivity.this, NewsDisplayActivity.class);
+                                Bundle b = new Bundle();
                                 try {
-                                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse((String) articleI.get("url")));
+                                    b.putString("url", (String) a0.get("url"));
                                 } catch (JSONException e) {
-                                    newsI.setText("cannot get url");
+                                    e.printStackTrace();
                                 }
-                                startActivity(browserIntent);
+                                intent.putExtras(b);
+                                startActivity(intent);
                             }
                         });
                     }

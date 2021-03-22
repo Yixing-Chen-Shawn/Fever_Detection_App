@@ -110,69 +110,93 @@
 
         </com.google.android.material.card.MaterialCardView>-->
     </LinearLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:src="@drawable/covid"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
 
-    <Button
-        android:id="@+id/button_Covid"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape"
-        android:text="View Current Corona Stats"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/heartrate_background"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button_health"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape"
-        android:text="View My Health Log"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/covid" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/medical"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+            <Button
+                android:id="@+id/button_Covid"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape"
+                android:text="View Current Corona Stats"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
 
-    <Button
-        android:id="@+id/button_Symptom"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape"
-        android:text="View My Symptom Log"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
-    <Button android:layout_height="wrap_content"
-        android:background="@drawable/shape"
-        android:layout_width="300dp"
-        android:id="@+id/button_healthNews"
-        android:textColor="@color/white"
-        android:text="View Health News"
-        android:layout_gravity="center_horizontal"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/heartrate_background" />
+
+            <Button
+                android:id="@+id/button_health"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape"
+                android:text="View My Health Log"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/medical" />
+
+            <Button
+                android:id="@+id/button_Symptom"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape"
+                android:text="View My Symptom Log"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/button_healthNews"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape"
+                android:text="View Health News"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/workout"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape"
+                android:text="View Workout Plan"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

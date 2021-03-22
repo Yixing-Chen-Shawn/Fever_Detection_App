@@ -30,6 +30,7 @@ import com.CIS400.fever_detection_app.activity.LoginActivity;
 import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
 import com.CIS400.fever_detection_app.activity.NotificationsActivity;
 import com.CIS400.fever_detection_app.activity.SymptomsLogActivity;
+import com.CIS400.fever_detection_app.activity.WorkoutActivity;
 import com.CIS400.fever_detection_app.data.MyUser;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ import java.util.List;
 public class homeFragment extends Fragment {
 
     private ImageView alertIcon, homeAlert;
-    private Button button, symptom_but, health_but, news_but;
+    private Button button, symptom_but, health_but, news_but, work_but;
     private List<String> bodytemp, heartrate, blood, symptomRatings;
     private MyUser user;
 
@@ -58,6 +59,7 @@ public class homeFragment extends Fragment {
         symptom_but = (Button) view.findViewById(R.id.button_Symptom);
         health_but = (Button) view.findViewById(R.id.button_health);
         news_but = (Button) view.findViewById(R.id.button_healthNews);
+        work_but = (Button) view.findViewById(R.id.workout);
 
         alertIcon = (ImageView) view.findViewById(R.id.alert_icon);
         homeAlert = (ImageView) view.findViewById(R.id.home_alert);
@@ -105,6 +107,12 @@ public class homeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), HealthNewsActivity.class));
+            }
+        });
+        work_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), WorkoutActivity.class));
             }
         });
 
