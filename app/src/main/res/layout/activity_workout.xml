@@ -12,13 +12,21 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/topbar"
+            android:id="@+id/topbarWorkoutDisplay"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
             android:background="@color/orange"
             android:gravity="center_vertical"
             android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/backWorkout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_arrow_back_24dp" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -29,113 +37,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="30dp"
-                android:text="Exercise"
+                android:text="Workout"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="39dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <RelativeLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
-
-
-            <!--<com.google.android.material.card.MaterialCardView
-            android:id="@+id/covid_Entry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-    </LinearLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:src="@drawable/covid"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Covid Statistics"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Latest Covid "
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary"
-            />
-
-
-        <Button
-        android:id="@+id/button_Covid"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape"
-        android:text="View Current Corona Stats"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
-
-
-        </com.google.android.material.card.MaterialCardView>-->
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/scrollStuff"
-            android:layout_width="410dp"
-            android:layout_height="671dp">
-
-            <LinearLayout
-                android:layout_width="412dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
-
-
-                <TableLayout
-                    android:id="@+id/exerciseTable"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:id="@+id/wTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp">
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="91dp"
-                            android:layout_height="match_parent"
-                            android:text="Muscle"
-                            android:textSize="17sp" />
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="278dp"
-                            android:layout_height="match_parent"
-                            android:text="Exercise"
-                            android:textSize="17sp" />
-                    </TableRow>
-
-                </TableLayout>
-            </LinearLayout>
-        </ScrollView>
-
+        <WebView
+            android:id="@+id/displayAllExercises"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

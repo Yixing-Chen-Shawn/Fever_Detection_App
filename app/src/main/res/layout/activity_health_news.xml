@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
     <!--Top Header Layout-->
     <LinearLayout
-        android:id="@+id/topbar"
+        android:id="@+id/news"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
@@ -16,13 +16,20 @@
         android:gravity="center_vertical"
         android:padding="16dp">
 
-        <Space
+        <ImageView
+            android:id="@+id/backNews"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_back_24dp" />
+
+        <Space
+            android:layout_width="26dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="30dp"
@@ -32,58 +39,10 @@
             android:textStyle="bold" />
 
         <Space
-            android:layout_width="wrap_content"
+            android:layout_width="61dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-
-        <!--<com.google.android.material.card.MaterialCardView
-            android:id="@+id/covid_Entry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
-    </LinearLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:src="@drawable/covid"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Covid Statistics"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Latest Covid "
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="?android:attr/textColorSecondary"
-            />
-
-
-        <Button
-        android:id="@+id/button_Covid"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape"
-        android:text="View Current Corona Stats"
-        android:textAllCaps="false"
-        android:textColor="@color/white" />
-
-
-        </com.google.android.material.card.MaterialCardView>-->
     </LinearLayout>
 
     <ScrollView

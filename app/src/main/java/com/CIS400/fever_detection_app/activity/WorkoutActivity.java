@@ -1,12 +1,15 @@
 package com.CIS400.fever_detection_app.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
@@ -37,128 +40,51 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WorkoutActivity extends BaseActivity {
-    private String muscleUrl = "https://wger.de/api/v2/muscle/", exerciseUrl = "https://wger.de/api/v2/exercise/";
-    public TableLayout exerciseTable;
-    public JSONArray exerciseList;
-    public TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
-    public TableRow.LayoutParams lp = new TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT,1.0f);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        exerciseTable = (TableLayout) findViewById(R.id.exerciseTable);
-        params.setMargins(30, 0, 30, 0);
-        TableRow title = (TableRow) findViewById(R.id.wTitle);
-
-        GradientDrawable border = new GradientDrawable();
-        border.setStroke(2, 0xFF000000);
-        Drawable[] layers = {border};
-        LayerDrawable bottom = new LayerDrawable(layers);
-        bottom.setLayerInset(0, -2, -2, -2, 0);
-        title.setBackground(bottom);
-
-        class ListenerParser implements Response.Listener<JSONObject> {
+        String url = "https://wger.de/en/exercise/overview/";
+        WebView workoutInfo = (WebView) findViewById(R.id.displayAllExercises);
+        ImageView backButton = (ImageView) findViewById(R.id.backWorkout);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(JSONObject response) {
-                JSONArray muscles = null;
-                try {
-                    muscles = (JSONArray) response.get("results");
-                    for(int i = 0; i < muscles.length(); ++i){
-                        int rowAdded = 0;
-                        TextView muscleName = new TextView(getApplicationContext());
-                        TableRow row = new TableRow(getApplicationContext());
-                        exerciseTable.addView(row);
-                        int id = (int) ((JSONObject) muscles.get(i)).get("id");
-                        row.addView(muscleName);
-                        row.setLayoutParams(params);
-                        muscleName.setText(((String) ((JSONObject) muscles.get(i)).get("name")));
-                        muscleName.setTextSize(17);
-                        //muscleName.setLayoutParams(lp);
-                        TextView exercise;
-                        for(int j = 0; j < exerciseList.length(); j++) {
-                            int language = (int) ((JSONObject) exerciseList.get(j)).get("language");
-                            if (language == 2) {
-                                Boolean hasId = false;
-                                JSONArray primary = (JSONArray) ((JSONObject) exerciseList.get(j)).get("muscles");
-                                JSONArray secondary = (JSONArray) ((JSONObject) exerciseList.get(j)).get("muscles_secondary");
-                                for (int k = 0; k < primary.length() + secondary.length(); ++k) {
-                                    if (k < primary.length()) {if ((int) primary.get(k) == id) { hasId = true; rowAdded+=1; k = primary.length() + secondary.length();}}
-                                    else {{if ((int) secondary.get(k-primary.length()) == id) {hasId = true; rowAdded+=1; k = primary.length() + secondary.length();}}}
-                                }
-                                if (hasId) {
-                                    if (rowAdded!=1){
-                                        row = new TableRow(getApplicationContext());
-                                        exerciseTable.addView(row);
-                                        row.addView(new Space(getApplicationContext()));
-                                    }
-                                    row.setLayoutParams(params);
-                                    exercise = new TextView(getApplicationContext());
-                                    exercise.setTextSize(17);
-                                    row.addView(exercise);
-                                    exercise.setText((String) ((JSONObject) exerciseList.get(j)).get("name"));
-                                }
-                            }
-                        }
-                        if (rowAdded==0){
-                            exercise = new TextView(getApplicationContext());
-                            exercise.setTextSize(17);
-                            exercise.setText("No exercise found");
-                            row.addView(exercise);
-                        }
-
-                        row.setBackground(bottom);
-
-                    }
-
-                } catch (Exception e) {
-                }
+            public void onClick(View view) {
+                onBackPressed();
             }
-        }
-        ListenerParser listener = new ListenerParser();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, this.muscleUrl, null, listener, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                }) {
+        });
+        workoutInfo.setWebViewClient(new WebViewClient() {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Accept", "application/json");
-                params.put("Authorization", "Token 4123325a4b028fa34f81d9733fbb49733f3fbb09");
-                return params;
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Intent intent = new Intent(WorkoutActivity.this, WorkoutInfoActivity.class);
+                Bundle b = new Bundle();
+                b.putString("url", url);
+                intent.putExtras(b);
+                startActivity(intent);
+                return true;
             }
-        };
-
-        JsonObjectRequest exerciseListRequest = new JsonObjectRequest
-                (Request.Method.GET, exerciseUrl, null,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    exerciseList = (JSONArray) response.get("results");
-                                    queue.add(jsonObjectRequest);
-                                } catch (JSONException e) {
-                                }
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError e) {
-                            }
-                        }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Accept", "application/json");
-                params.put("Authorization", "Token 4123325a4b028fa34f81d9733fbb49733f3fbb09");
-                return params;
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                workoutInfo.setVisibility(View.INVISIBLE);
+                super.onPageStarted(view, url, favicon);
             }
-        };
-        queue.add(exerciseListRequest);
-
+            @Override
+            public void onPageFinished (WebView web, String url) {
+                web.loadUrl("javascript:var elements = document.getElementsByTagName('nav');" +
+                        "while (elements[0]) elements[0].parentNode.removeChild(elements[0]);"+
+                        "document.getElementById('main-sidebar').remove();"+
+                        "elements = document.getElementsByClassName('col-md-4 py-3');"+
+                        "while (elements[0]) elements[0].parentNode.removeChild(elements[0]);"+
+                        "elements = document.getElementsByClassName('bg-wger-light border-top');"+
+                        "while (elements[0]) elements[0].parentNode.removeChild(elements[0]);");
+                workoutInfo.setVisibility(View.VISIBLE);
+            }
+        });
+        workoutInfo.setVisibility(View.INVISIBLE);
+        workoutInfo.getSettings().setJavaScriptEnabled(true);
+        workoutInfo.setVerticalScrollBarEnabled(true);
+        workoutInfo.setHorizontalScrollBarEnabled(true);
+        workoutInfo.loadUrl(url);
     }
 
 }

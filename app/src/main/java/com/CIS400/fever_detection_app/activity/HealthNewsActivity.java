@@ -33,7 +33,12 @@ public class HealthNewsActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_news);
-        ((TextView) findViewById(R.id.header)).setOnClickListener(null);
+        ((ImageView) findViewById(R.id.backNews)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         news0 = (TextView) findViewById(R.id.news0);
         news0Img = (ImageView) findViewById(R.id.news0_img);
         news0Img.setOnClickListener(null);
