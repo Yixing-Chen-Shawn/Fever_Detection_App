@@ -45,7 +45,6 @@
         <activity android:name=".activity.ManualHealthActivity" />
         <activity android:name=".activity.MeChangePhoneNumActivity" />
         <activity android:name=".activity.MeChangePasswordActivity" />
-        <activity android:name=".activity.ContactsLogActivity" />
         <activity android:name=".activity.HeartRateLogActivity" />
         <activity android:name=".activity.CoronaStatsActivity" />
         <activity android:name=".activity.ForgetPasswordActivity" />

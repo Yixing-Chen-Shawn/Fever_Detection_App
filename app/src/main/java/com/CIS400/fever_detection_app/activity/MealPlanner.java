@@ -76,10 +76,7 @@ public class MealPlanner extends AppCompatActivity {
         getMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 prepareForHttpRequest();
-                //httpRequest();
             }
         });
     }
@@ -88,7 +85,6 @@ public class MealPlanner extends AppCompatActivity {
 
         JSONObject newJson = new JSONObject(json);
         JSONArray recipes = newJson.getJSONArray("recipes");
-        //names.add(results.getJSONObject(i).getString("name"));
         mealTitle.setText(recipes.getJSONObject(0).getString("title"));
         mealSummary.setText(recipes.getJSONObject(0).getString("instructions"));
 
@@ -141,7 +137,6 @@ public class MealPlanner extends AppCompatActivity {
 
         // HTTP REQUEST
         OkHttpClient client = new OkHttpClient();
-        String test = "Hello " + "Kanoa";
         String url = "https://api.spoonacular.com/recipes/random?number=1" + mealType + "&apiKey=fb66054ae8124ef7970d33b3aafa8c93";
         Request request = new Request.Builder()
                 .url(url)
@@ -160,9 +155,7 @@ public class MealPlanner extends AppCompatActivity {
                     MealPlanner.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //Log.d("myTag", myResponse);
                             try {
-                                //getNearbyHospitals(myResponse);
                                 getMeals(myResponse);
                             } catch (JSONException e) {
                                 e.printStackTrace();

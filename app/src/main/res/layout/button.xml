@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Heart Rate"
+            android:text="Health"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
     </LinearLayout>
@@ -82,7 +82,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contacts"
+        android:text="Fitness"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
     </LinearLayout>

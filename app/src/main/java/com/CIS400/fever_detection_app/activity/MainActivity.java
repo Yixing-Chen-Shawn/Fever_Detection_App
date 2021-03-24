@@ -1,28 +1,21 @@
 package com.CIS400.fever_detection_app.activity;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.CIS400.fever_detection_app.R;
-import com.CIS400.fever_detection_app.fragments.contactsFragment;
+import com.CIS400.fever_detection_app.fragments.fitnessFragment;
 import com.CIS400.fever_detection_app.fragments.heartRateFragment;
 import com.CIS400.fever_detection_app.fragments.homeFragment;
 import com.CIS400.fever_detection_app.fragments.meFragment;
@@ -56,39 +49,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        //initToolbar();
         initViews(); //initialize layout n image button
         initEvents(); //initialize events
         selectTab(0); // select tab0 as default
     }
 
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.toolbar_menu_home,menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.searchCountry:
-                Toast.makeText(this, "test 1 clicked ", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.info:
-                Toast.makeText(this, "test 2 clicked ", Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return true;
-    }
-
-
-    private void initToolbar(){
-        toolbar = findViewById(R.id.toolbar_home);
-        toolbar.setTitle("Home");
-        setSupportActionBar(toolbar);
-    }
-*/
     private void initEvents(){
         mTab1.setOnClickListener(this);
         mTab2.setOnClickListener(this);
@@ -159,7 +124,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case 2:
                 mImg3.setImageResource(R.mipmap.ic_menu_distance_on);
                 if (mFrag3 == null) {
-                    mFrag3 = new contactsFragment();
+                    mFrag3 = new fitnessFragment();
                     transaction.add(R.id.id_content, mFrag3, "f3");
                 } else {
                     transaction.show(mFrag3);

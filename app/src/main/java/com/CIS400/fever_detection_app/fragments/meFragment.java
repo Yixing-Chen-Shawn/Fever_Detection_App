@@ -16,7 +16,6 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.CIS400.fever_detection_app.R;
-import com.CIS400.fever_detection_app.activity.ContactsLogActivity;
 import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.LoginActivity;
 import com.CIS400.fever_detection_app.activity.MeChangePasswordActivity;
@@ -86,13 +85,7 @@ public class meFragment extends Fragment {
                 startActivity(new Intent(getActivity(), HeartRateLogActivity.class));
             }
         });
-
-        contacts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ContactsLogActivity.class));
-            }
-        });
+        
 
         change_password.setOnClickListener(new View.OnClickListener() {
             @Override

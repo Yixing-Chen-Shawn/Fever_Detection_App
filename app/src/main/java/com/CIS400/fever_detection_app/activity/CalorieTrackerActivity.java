@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.CIS400.fever_detection_app.R;
 
@@ -18,6 +20,7 @@ public class CalorieTrackerActivity extends AppCompatActivity {
     private RadioButton male, female, littleActive, slightlyActive, moderatelyActive, veryActive;
     private TextView age, height, caloriesShownText;
     private Double total;
+    private ImageView back;
 
 
     @Override
@@ -35,6 +38,7 @@ public class CalorieTrackerActivity extends AppCompatActivity {
         age = (TextView) findViewById(R.id.ageTextField);
         height = (TextView) findViewById(R.id.heightTextField);
         caloriesShownText = (TextView) findViewById(R.id.numberOfCaloriesText) ;
+        back = (ImageView) findViewById(R.id.back_calorieTracker);
 
 
         calculate.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +49,12 @@ public class CalorieTrackerActivity extends AppCompatActivity {
             }
         });
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     private void getCalorieCalculation() {
@@ -98,6 +107,17 @@ public class CalorieTrackerActivity extends AppCompatActivity {
             caloriesShownText.setText("Please input all values");
         }
 
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 
