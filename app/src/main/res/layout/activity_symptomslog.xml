@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="30dp"
-            android:text="Symptoms Log"
+            android:text="Journal"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
