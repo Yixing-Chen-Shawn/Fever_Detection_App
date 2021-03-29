@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.CIS400.fever_detection_app.R;
+import com.CIS400.fever_detection_app.activity.HealthNewsActivity;
 import com.CIS400.fever_detection_app.activity.HeartRateLogActivity;
 import com.CIS400.fever_detection_app.activity.ManualHealthActivity;
 import com.CIS400.fever_detection_app.activity.ManualSymptomActivity;
@@ -103,7 +104,7 @@ public class heartRateFragment extends Fragment {
         health_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), HeartRateLogActivity.class));
+                startActivity(new Intent(getActivity(), HealthNewsActivity.class));
             }
         });
 
