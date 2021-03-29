@@ -53,7 +53,7 @@ public class WorkoutActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-        /*workoutInfo.setWebViewClient(new WebViewClient() {
+        workoutInfo.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Intent intent = new Intent(WorkoutActivity.this, WorkoutInfoActivity.class);
@@ -62,8 +62,8 @@ public class WorkoutActivity extends BaseActivity {
                 intent.putExtras(b);
                 startActivity(intent);
                 return true;
-            }*/
-           /* @Override
+            }
+            @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 workoutInfo.setVisibility(View.INVISIBLE);
                 super.onPageStarted(view, url, favicon);
@@ -84,7 +84,7 @@ public class WorkoutActivity extends BaseActivity {
         workoutInfo.getSettings().setJavaScriptEnabled(true);
         workoutInfo.setVerticalScrollBarEnabled(true);
         workoutInfo.setHorizontalScrollBarEnabled(true);
-        workoutInfo.loadUrl(url);*/
+        workoutInfo.loadUrl(url);
     }
 
 }
