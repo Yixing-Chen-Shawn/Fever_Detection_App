@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/shape"
-                android:text="View My Symptom Log"
+                android:text="View My Journal"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
