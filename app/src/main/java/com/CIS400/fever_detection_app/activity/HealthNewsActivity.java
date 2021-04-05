@@ -1,5 +1,6 @@
 package com.CIS400.fever_detection_app.activity;
 
+import android.graphics.Paint;
 import android.net.Uri;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,12 +24,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class HealthNewsActivity extends BaseActivity{
+    //This activity obtains news from an external API
+    //Because I am using a free trail version, the app can only send 100 requests per day
     private String jsonUrl = "http://newsapi.org/v2/top-headlines?country=us&catagory=health&apiKey=96addd4bc8af46d1881803c589c42e22";
     public TextView news0;
     public ImageView news0Img;
     public TextView[] news = new TextView[4];
+    public Boolean responseProcessed = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,16 +44,22 @@ public class HealthNewsActivity extends BaseActivity{
         });
         news0 = (TextView) findViewById(R.id.news0);
         news0Img = (ImageView) findViewById(R.id.news0_img);
+/*
         news0Img.setOnClickListener(null);
+*/
         news0.setText("Getting news");
-        news0.setOnClickListener(null);
+        /*news0.setOnClickListener(null);*/
         news[0] = (TextView) findViewById(R.id.news1);
         news[1] = (TextView) findViewById(R.id.news2);
         news[2] = (TextView) findViewById(R.id.news3);
         news[3] = (TextView) findViewById(R.id.news4);
         for(int i = 0; i < 4; i++){
-            news[i].setText("Getting news");
-            news[i].setOnClickListener(null);
+            news[i].setText("Getting news");/*
+            Intent intent = new Intent(HealthNewsActivity.this, NewsDisplayActivity.class);
+            Bundle b = new Bundle();
+            b.putString("news", "foo");
+            intent.putExtras(b);
+            startActivity(intent);*/
         }
         getNews();
     }
@@ -74,7 +83,7 @@ public class HealthNewsActivity extends BaseActivity{
                             try {
                                 b.putString("news", (String) a0.get("content"));
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                news0.setText("failed to get url of news");
                             }
                             intent.putExtras(b);
                             startActivity(intent);
@@ -87,7 +96,7 @@ public class HealthNewsActivity extends BaseActivity{
                             try {
                                 b.putString("url", (String) a0.get("url"));
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                news0.setText("failed to get url of news");
                             }
                             intent.putExtras(b);
                             startActivity(intent);
@@ -98,14 +107,16 @@ public class HealthNewsActivity extends BaseActivity{
                         JSONObject articleI = (JSONObject) articles.get(i+1);
                         TextView newsI = news[i];
                         newsI.setText((String) articleI.get("title"));
+                        JSONArray finalArticles = articles;
+                        int finalI = i;
                         newsI.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 Intent intent = new Intent(HealthNewsActivity.this, NewsDisplayActivity.class);
                                 Bundle b = new Bundle();
                                 try {
-                                    b.putString("url", (String) a0.get("url"));
+                                    b.putString("url", (String) ((JSONObject) finalArticles.get(finalI +1)).get("url"));
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    newsI.setText("failed to get url of news");
                                 }
                                 intent.putExtras(b);
                                 startActivity(intent);
@@ -120,13 +131,13 @@ public class HealthNewsActivity extends BaseActivity{
                     }, 1920, 1080,android.graphics.Bitmap.Config.valueOf("ARGB_8888"),new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            news0.setText("cannot get img");
                         }
                     });
                     queue.add(imageRequest);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    news0.setText("failed to get news, possible cause is that we are using a free account of https://newsapi.org/ and no more than 100 requests can be made per day");
                 }
+                responseProcessed = true;
             }
         };
 
@@ -136,11 +147,7 @@ public class HealthNewsActivity extends BaseActivity{
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        news0.setText("Unable to get news");
-                        for(int i =0; i < 4; ++i){
-                            news[i].setText("Unable to get news");
-                        }
-
+                        news0.setText("Internet error, please check your internet connection");
                     }
                 }){
             @Override
