@@ -54,12 +54,7 @@ public class HealthNewsActivity extends BaseActivity{
         news[2] = (TextView) findViewById(R.id.news3);
         news[3] = (TextView) findViewById(R.id.news4);
         for(int i = 0; i < 4; i++){
-            news[i].setText("Getting news");/*
-            Intent intent = new Intent(HealthNewsActivity.this, NewsDisplayActivity.class);
-            Bundle b = new Bundle();
-            b.putString("news", "foo");
-            intent.putExtras(b);
-            startActivity(intent);*/
+            news[i].setText("Getting news");
         }
         getNews();
     }

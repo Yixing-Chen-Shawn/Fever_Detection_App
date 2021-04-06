@@ -2,6 +2,7 @@ package com.CIS400.fever_detection_app.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.widget.TextView;
 
@@ -37,9 +38,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
+
 @RunWith(AndroidJUnit4.class)
-@LargeTest
 public class HealthNewsActivityTest  {
+<<<<<<< HEAD
+=======
+    //Tests the behavior of HealthNewsActivity
+
+>>>>>>> 7c9676d7e216e2c62eaebc2686abcfd53141e0ef
     @Rule
     public ActivityScenarioRule<HealthNewsActivity> activityRule = new ActivityScenarioRule<>(HealthNewsActivity.class);
     @Test
@@ -96,6 +103,11 @@ public class HealthNewsActivityTest  {
     }
     @Test
     public void clickBeforeLoadedTestImg(){
+        onView(withId(R.id.news0_img)).perform(click());
+    }
+    @Test
+    public void clickAfterLoaded() throws InterruptedException {
+        Thread.sleep(5000);
         onView(withId(R.id.news0_img)).perform(click());
     }
 }

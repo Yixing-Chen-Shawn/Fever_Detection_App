@@ -25,7 +25,7 @@ import com.android.volley.toolbox.Volley;
 
 public class NewsDisplayActivity extends BaseActivity {
     public WebView news0;
-
+    public String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +53,11 @@ public class NewsDisplayActivity extends BaseActivity {
             news0.loadUrl(url);
         }
         else {
-            news0.loadData("<html><body> Invalid URL </body></html>", "text/html; charset=utf-8", "utf-8");
+            news0.loadData("<html><title> Bad URL </title> <body> Invalid URL </body></html>", "text/html; charset=utf-8", "utf-8");
         }
+        title = news0.getTitle();
     }
-    public boolean foo(){
-        return true;
+    public String getPageTitle(){
+        return title;
     }
 }
