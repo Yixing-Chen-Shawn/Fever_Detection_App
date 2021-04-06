@@ -76,21 +76,25 @@ public class ManualHealthActivity extends AppCompatActivity {
                 }
 
                 if(Double.parseDouble(sheartrate) < 0){
-                    sheartrate = "Unknown";
+                    Toast.makeText(ManualHealthActivity.this, "Error: Cannot be less than zero", Toast.LENGTH_LONG).show();
+                    return;
                 }
 
                 if(Double.parseDouble(scontacts) < 0){
-                    scontacts = "Unknown";
+                    Toast.makeText(ManualHealthActivity.this, "Error: Cannot be less than zero", Toast.LENGTH_LONG).show();
+                    return;
                 }
 
 
                 if(Double.parseDouble(sbodytemp) < 0){
-                    sbodytemp = "Unknown";
+                    Toast.makeText(ManualHealthActivity.this, "Error: Cannot be less than zero", Toast.LENGTH_LONG).show();
+                    return;
                 }
 
 
                 if(Double.parseDouble(sblood) < 0){
-                    sblood = "Unknown";
+                    Toast.makeText(ManualHealthActivity.this, "Error: Cannot be less than zero", Toast.LENGTH_LONG).show();
+                    return;
                 }
 
                 if(datel.contains(sdate)){

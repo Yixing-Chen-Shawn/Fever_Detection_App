@@ -40,25 +40,6 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class HealthNewsActivityTest  {
-    //Tests the behavior of HealthNewsActivity
-
-    public Activity getCurrentActivity() {
-        //Helper function that gets the current running activity
-        final Activity[] currentActivity = new Activity[1];
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
-            @Override
-            public void run() {
-                Collection<Activity> allActivities = ActivityLifecycleMonitorRegistry.getInstance()
-                        .getActivitiesInStage(Stage.RESUMED);
-                if (!allActivities.isEmpty()) {
-                    currentActivity[0] = allActivities.iterator().next();
-                }
-            }
-        });
-        return currentActivity[0];
-    }
-
-
     @Rule
     public ActivityScenarioRule<HealthNewsActivity> activityRule = new ActivityScenarioRule<>(HealthNewsActivity.class);
     @Test

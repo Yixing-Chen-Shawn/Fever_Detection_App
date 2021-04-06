@@ -39,7 +39,7 @@ import java.util.List;
 public class homeFragment extends Fragment {
 
     private ImageView alertIcon, homeAlert;
-    private Button button, symptom_but;
+    private Button button, symptom_but, health_but;
     private List<String> bodytemp, heartrate, blood, symptomRatings;
     private MyUser user;
 
@@ -57,6 +57,7 @@ public class homeFragment extends Fragment {
         }
         button = (Button) view.findViewById(R.id.button_Covid);
         symptom_but = (Button) view.findViewById(R.id.button_Symptom);
+        health_but = (Button) view.findViewById(R.id.button_health);
 
         alertIcon = (ImageView) view.findViewById(R.id.alert_icon);
         homeAlert = (ImageView) view.findViewById(R.id.home_alert);
@@ -84,6 +85,13 @@ public class homeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CoronaStatsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        health_but.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), HeartRateLogActivity.class));
             }
         });
 
