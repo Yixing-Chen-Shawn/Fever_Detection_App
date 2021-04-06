@@ -42,11 +42,6 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class HealthNewsActivityTest  {
-<<<<<<< HEAD
-=======
-    //Tests the behavior of HealthNewsActivity
-
->>>>>>> 7c9676d7e216e2c62eaebc2686abcfd53141e0ef
     @Rule
     public ActivityScenarioRule<HealthNewsActivity> activityRule = new ActivityScenarioRule<>(HealthNewsActivity.class);
     @Test
