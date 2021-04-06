@@ -26,7 +26,6 @@ android {
         targetCompatibility 1.8
     }
 }
-
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.viewpager:viewpager:1.0.0'
@@ -46,6 +45,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
 
     implementation 'cn.bmob.android:bmob-sdk:3.7.8'
     implementation "io.reactivex.rxjava2:rxjava:2.2.8"
