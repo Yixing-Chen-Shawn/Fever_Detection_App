@@ -19,5 +19,4 @@ public class MainActivityTest {
     public void globalListFragmentTest(){
         onView(withId(R.id.button_Covid)).perform(click());
     }
-
 }
